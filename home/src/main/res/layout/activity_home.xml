@@ -7,12 +7,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_EDEEF3">
+        android:background="@android:color/white">
 
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="45dp"
             android:gravity="center"
             android:text="音视频提取器"
             android:textColor="@android:color/black"
@@ -26,8 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="20dp"
-            android:background="@null"
             android:drawableEnd="@mipmap/delete"
+            android:gravity="center_vertical"
             android:hint="请输入分享视频地址"
             android:singleLine="true"
             android:textSize="14sp"

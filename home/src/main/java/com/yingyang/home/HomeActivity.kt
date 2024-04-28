@@ -13,6 +13,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
     override fun initViews() {
 
+
     }
 
     override fun initListener() {

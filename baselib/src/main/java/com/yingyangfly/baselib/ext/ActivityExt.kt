@@ -27,7 +27,9 @@ import java.lang.reflect.ParameterizedType
  */
 fun BaseActivity<*>.initBar(full: Boolean) {
     immersionBar {
-        hideBar(BarHide.FLAG_HIDE_BAR)
+        hideBar(BarHide.FLAG_HIDE_NAVIGATION_BAR)
+        statusBarDarkFont(true)
+        statusBarColor(R.color.white)
         navigationBarColor(R.color.transparent)
     }
 }
@@ -37,7 +39,8 @@ fun BaseActivity<*>.initBar(full: Boolean) {
  */
 fun BaseDialogFragment<*>.initBar(full: Boolean) {
     immersionBar {
-        hideBar(BarHide.FLAG_HIDE_BAR)
+        hideBar(BarHide.FLAG_HIDE_NAVIGATION_BAR)
+        statusBarDarkFont(true)
         navigationBarColor(R.color.transparent)
     }
 }
@@ -47,7 +50,8 @@ fun BaseDialogFragment<*>.initBar(full: Boolean) {
  */
 fun BaseFragment<*>.initBar(full: Boolean) {
     immersionBar {
-        hideBar(BarHide.FLAG_HIDE_BAR)
+        hideBar(BarHide.FLAG_HIDE_NAVIGATION_BAR)
+        statusBarDarkFont(true)
         navigationBarColor(R.color.transparent)
     }
 }
@@ -57,7 +61,8 @@ fun BaseFragment<*>.initBar(full: Boolean) {
  */
 fun BaseFragmentActivity<*>.initBar(full: Boolean) {
     immersionBar {
-        hideBar(BarHide.FLAG_HIDE_BAR)
+        hideBar(BarHide.FLAG_HIDE_NAVIGATION_BAR)
+        statusBarDarkFont(true)
         navigationBarColor(R.color.transparent)
     }
 }
@@ -68,6 +73,7 @@ fun BaseFragmentActivity<*>.initBar(full: Boolean) {
 fun BaseActivity<*>.statusBarDarkFont(isDarkFont: Boolean) {
     immersionBar {
         statusBarDarkFont(isDarkFont)
+        statusBarDarkFont(true)
         statusBarColor(R.color.white)
     }
 }
