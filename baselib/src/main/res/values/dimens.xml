@@ -182,4 +182,133 @@
     <dimen name="divider_3px" tools:ignore="ResourceName">3px</dimen>
     <dimen name="divider_2px" tools:ignore="ResourceName">2px</dimen>
     <dimen name="divider_1px" tools:ignore="ResourceName">1px</dimen>
+
+
+
+    <!--	标题     -->
+    <dimen name="toolbar_height">45dp</dimen>
+    <dimen name="toolbar_text_size">18sp</dimen>
+    <!--	 分割线     -->
+    <dimen name="divider_height">2px</dimen>
+
+    <!--    默认字体大小-->
+    <dimen name="x_txt_default">16sp</dimen>
+    <!--分割线默认宽 ，高度-->
+    <dimen name="border_default">2px</dimen>
+
+    <!--字体大小-->
+    <dimen name="txt_smallest">10sp</dimen>
+    <dimen name="txt_smaller">12sp</dimen>
+    <dimen name="txt_small">13sp</dimen>
+    <!--android TextView默认字体　为　15sp-->
+    <dimen name="txt_default">16sp</dimen>
+    <dimen name="txt_14sp">14sp</dimen>
+    <dimen name="txt_large">18sp</dimen>
+    <dimen name="txt_larger">20sp</dimen>
+    <dimen name="txt_largest">22sp</dimen>
+    <!--添加的尺寸-->
+    <dimen name="txt_11">11sp</dimen>
+    <dimen name="txt_12">12sp</dimen>
+    <dimen name="txt_13">13sp</dimen>
+    <dimen name="txt_15">15sp</dimen>
+    <dimen name="txt_16">16sp</dimen>
+    <dimen name="txt_17">17sp</dimen>
+    <dimen name="txt_18">18sp</dimen>
+    <dimen name="txt_20">20sp</dimen>
+    <dimen name="txt_24">24sp</dimen>
+    <dimen name="txt_26">26sp</dimen>
+    <dimen name="txt_30">30sp</dimen>
+    <dimen name="txt_36">36sp</dimen>
+
+    <dimen name="view_minus4">-4dp</dimen>
+    <dimen name="view_minus16">-16dp</dimen>
+    <dimen name="view_minus22">-22dp</dimen>
+    <dimen name="view_0">0dp</dimen>
+    <dimen name="view_0.5">0.5dp</dimen>
+    <dimen name="view_1">1dp</dimen>
+    <dimen name="view_2">2dp</dimen>
+    <dimen name="view_3">3dp</dimen>
+    <dimen name="view_4">4dp</dimen>
+    <dimen name="view_5">5dp</dimen>
+    <dimen name="view_6">6dp</dimen>
+    <dimen name="view_7">7dp</dimen>
+    <dimen name="view_8">8dp</dimen>
+    <dimen name="view_9">9dp</dimen>
+    <dimen name="view_10">10dp</dimen>
+    <dimen name="view_11">11dp</dimen>
+    <dimen name="view_12">12dp</dimen>
+    <dimen name="view_13">13dp</dimen>
+    <dimen name="view_14">14dp</dimen>
+    <dimen name="view_15">15dp</dimen>
+    <dimen name="view_16">16dp</dimen>
+    <dimen name="view_18">18dp</dimen>
+    <dimen name="view_19">19dp</dimen>
+    <dimen name="view_20">20dp</dimen>
+    <dimen name="view_22">22dp</dimen>
+    <dimen name="view_24">24dp</dimen>
+    <dimen name="view_25">25dp</dimen>
+    <dimen name="view_26">26dp</dimen>
+    <dimen name="view_27">27dp</dimen>
+    <dimen name="view_28">28dp</dimen>
+    <dimen name="view_29">29dp</dimen>
+    <dimen name="view_30">30dp</dimen>
+    <dimen name="view_32">32dp</dimen>
+    <dimen name="view_35">35dp</dimen>
+    <dimen name="view_36">36dp</dimen>
+    <dimen name="view_38">38dp</dimen>
+    <dimen name="view_39">39dp</dimen>
+    <dimen name="view_40">40dp</dimen>
+    <dimen name="view_42">42dp</dimen>
+    <dimen name="view_44">44dp</dimen>
+    <dimen name="view_46">44dp</dimen>
+    <dimen name="view_49">49dp</dimen>
+    <dimen name="view_55">55dp</dimen>
+    <dimen name="view_56">56dp</dimen>
+    <dimen name="view_59">59dp</dimen>
+    <dimen name="view_60">60dp</dimen>
+    <dimen name="view_64">64dp</dimen>
+    <dimen name="view_70">70dp</dimen>
+    <dimen name="view_73">73dp</dimen>
+    <dimen name="view_76">76dp</dimen>
+    <dimen name="view_80">80dp</dimen>
+    <dimen name="view_90">90dp</dimen>
+    <dimen name="view_98">98dp</dimen>
+    <dimen name="view_100">100dp</dimen>
+    <dimen name="view_102">102dp</dimen>
+    <dimen name="view_108">108dp</dimen>
+    <dimen name="view_110">110dp</dimen>
+    <dimen name="view_113">113dp</dimen>
+    <dimen name="view_124">124dp</dimen>
+    <dimen name="view_126">126dp</dimen>
+    <dimen name="view_136">136dp</dimen>
+    <dimen name="view_140">140dp</dimen>
+    <dimen name="view_148">148dp</dimen>
+    <dimen name="view_160">160dp</dimen>
+    <dimen name="view_162">162dp</dimen>
+    <dimen name="view_168">168dp</dimen>
+    <dimen name="view_180">180dp</dimen>
+    <dimen name="view_187">187dp</dimen>
+    <dimen name="view_204">204dp</dimen>
+    <dimen name="view_210">210dp</dimen>
+    <dimen name="view_225">225dp</dimen>
+    <dimen name="view_230">230dp</dimen>
+    <dimen name="view_255">255dp</dimen>
+    <dimen name="view_286">286dp</dimen>
+    <dimen name="view_295">295</dimen>
+    <dimen name="view_335">335dp</dimen>
+    <dimen name="view_355">355dp</dimen>
+    <dimen name="view_366">366dp</dimen>
+
+    <dimen name="login_margin_left">35dp</dimen>
+    <dimen name="propressbar_height_webview">3dp</dimen>
+
+    <!--头像距离左边或者右边的距离-->
+    <dimen name="ease_chat_avatar_margin">10dp</dimen>
+    <!--内容布局距离头像的距离-->
+    <dimen name="ease_chat_bubble_margin_avatar">10dp</dimen>
+    <!--已送达距离bubble的距离-->
+    <dimen name="ease_chat_ack_margin_bubble">5dp</dimen>
+    <dimen name="xlys_sub_title_text_size">14sp</dimen>
+    <!--    聊天气泡 上面  和 上一个 气泡的间距-->
+    <dimen name="xlys_chat_box_margin">10dp</dimen>
 </resources>

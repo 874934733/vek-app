@@ -27,10 +27,9 @@ import java.lang.reflect.ParameterizedType
  */
 fun BaseActivity<*>.initBar(full: Boolean) {
     immersionBar {
-        hideBar(BarHide.FLAG_HIDE_NAVIGATION_BAR)
+        titleBar(bindingBase.layoutTitle.titleRootView)
         statusBarDarkFont(true)
-        statusBarColor(R.color.white)
-        navigationBarColor(R.color.transparent)
+        navigationBarColor(R.color.white)
     }
 }
 
@@ -166,6 +165,21 @@ fun <DB> BaseActivity<*>.getDbClass(t: Any): DB {
     // 获得私有方法
     val method = bClass.getDeclaredMethod("inflate", LayoutInflater::class.java)
     return method?.invoke(null, layoutInflater) as DB
+}
+
+/**
+ * 标题栏初始化
+ */
+fun BaseActivity<*>.initTitle(value: String, showLeftButton: Boolean = true) {
+    // 标题为空时，不显示布局
+    if (value.isNotEmpty()) {
+        bindingBase.layoutTitle.titleRootView.visibility = View.VISIBLE
+        bindingBase.layoutTitle.tvTitle.text = value
+        bindingBase.layoutTitle.imgLeft.show(showLeftButton)
+        bindingBase.layoutTitle.imgLeft.click {
+            finish()
+        }
+    }
 }
 
 /**

@@ -1,18 +1,17 @@
 package com.yingyangfly.baselib.base
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.content.Context
 import android.content.pm.ActivityInfo
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.launcher.ARouter
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
@@ -21,14 +20,15 @@ import com.yingyangfly.baselib.databinding.ActivityBaseBinding
 import com.yingyangfly.baselib.dialog.LoadingDialog
 import com.yingyangfly.baselib.ext.getDbClass
 import com.yingyangfly.baselib.ext.initBar
+import com.yingyangfly.baselib.ext.initTitle
 import com.yingyangfly.baselib.utils.ActivityManagers
 import com.yingyangfly.baselib.utils.ResUtil
-import gorden.rxbus2.RxBus
 
 /**
  * activity基类
  */
 abstract class BaseActivity<DB : ViewDataBinding> : AppCompatActivity(), OnRefreshLoadMoreListener {
+
 
     /**
      * 确定初始化将总是发生在单个线程，那么你可以使用 LazyThreadSafetyMode.NONE模式， 它不会有任何线程安全的保证和相关的开销。
@@ -41,6 +41,14 @@ abstract class BaseActivity<DB : ViewDataBinding> : AppCompatActivity(), OnRefre
     val bindingBase: ActivityBaseBinding by lazy {
         ActivityBaseBinding.inflate(layoutInflater)
     }
+
+    /**
+     * 标题
+     */
+    var title = ""
+        set(value) {
+            initTitle(value)
+        }
 
     lateinit var mContext: Context
 
@@ -56,13 +64,9 @@ abstract class BaseActivity<DB : ViewDataBinding> : AppCompatActivity(), OnRefre
         LoadingDialog(mContext)
     }
 
-    private var logoutDialog: AlertDialog? = null
-
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        RxBus.get().register(this)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT // 竖屏
         mContext = this
         initWindow()
         // 默认不全屏，底部导航栏透明
@@ -76,6 +80,8 @@ abstract class BaseActivity<DB : ViewDataBinding> : AppCompatActivity(), OnRefre
         binding.root.layoutParams = params
         bindingBase.llytContent.addView(binding.root)
         setContentView(bindingBase.root)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT // 竖屏
+
         initMVVM()
         initViews()
         initListener()
@@ -125,8 +131,8 @@ abstract class BaseActivity<DB : ViewDataBinding> : AppCompatActivity(), OnRefre
         bindingBase.smartRefreshLayout.setEnableOverScrollDrag(false)
         bindingBase.smartRefreshLayout.setOnRefreshLoadMoreListener(this)
         //设置刷新头和加载头的背景色
-        bindingBase.smartRefreshLayout.refreshHeader?.view?.setBackgroundColor(ResUtil.getColor(R.color.color_F5F5F5))
-        bindingBase.smartRefreshLayout.refreshFooter?.view?.setBackgroundColor(ResUtil.getColor(R.color.color_F5F5F5))
+        bindingBase.smartRefreshLayout.refreshHeader?.view?.setBackgroundColor(ResUtil.getColor(R.color.colorBorder))
+        bindingBase.smartRefreshLayout.refreshFooter?.view?.setBackgroundColor(ResUtil.getColor(R.color.colorBorder))
     }
 
     /**
@@ -235,32 +241,26 @@ abstract class BaseActivity<DB : ViewDataBinding> : AppCompatActivity(), OnRefre
 
     override fun onDestroy() {
         super.onDestroy()
-        RxBus.get().unRegister(this)
         ActivityManagers.instance.removeActivity(this)
     }
 
-    var showFragment: Fragment? = null
-    fun showFragment(viewId: Int, f: Fragment) {
-        try {
-            val ft = supportFragmentManager.beginTransaction()
-            if (showFragment != null) ft.hide(showFragment!!)
-            if (f.isAdded) {
-                ft.show(f)
-            } else {
-                ft.add(viewId, f)
-            }
-            showFragment = f
-            ft.commitAllowingStateLoss()
-            supportFragmentManager.executePendingTransactions()// 立即执行
-        } catch (e: Exception) {
-            e.printStackTrace()
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        if (newConfig.fontScale != 1f) {
+            // 非默认值
+            resources
         }
+        super.onConfigurationChanged(newConfig)
     }
 
-    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            return true
+    override fun getResources(): Resources {
+        val res = super.getResources()
+        if (res.configuration.fontScale != 1f) {
+            // 非默认值
+            val newConfig = Configuration()
+            newConfig.setToDefaults() // 设置默认
+            res.updateConfiguration(newConfig, res.displayMetrics)
         }
-        return false
+        return res
     }
 }
