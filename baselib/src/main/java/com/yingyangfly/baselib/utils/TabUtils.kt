@@ -5,7 +5,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.google.android.material.tabs.TabLayout
 import com.yingyangfly.baselib.R
-import kotlinx.android.synthetic.main.tab_custom.view.*
+import kotlinx.android.synthetic.main.tab_custom.view.img_tab
+import kotlinx.android.synthetic.main.tab_custom.view.tv_tab
 
 object TabUtils {
     /**

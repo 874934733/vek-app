@@ -9,7 +9,7 @@ package com.yingyangfly.baselib.utils
 import android.app.Activity
 import android.util.Log
 import com.blankj.utilcode.util.ActivityUtils
-import java.util.*
+import java.util.Stack
 import kotlin.system.exitProcess
 
 class ActivityManagers {

@@ -4,11 +4,13 @@ import android.app.AlertDialog
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.view.*
+import android.view.View
+import android.view.ViewGroup
+import android.view.Window
+import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.widget.AppCompatImageView
-import com.bumptech.glide.Glide
 import com.yingyangfly.baselib.R
 import com.yingyangfly.baselib.utils.AppUtil
 import com.yingyangfly.baselib.utils.ViewTool
@@ -39,10 +41,7 @@ class LoadingDialog constructor(context: Context) : AlertDialog(context, R.style
     }
 
     private fun init() {
-        Glide.with(context)
-            .asGif()
-            .load(R.drawable.fish)
-            .into(fishImage!!)
+
     }
 
     private fun setDialogLayout(dialogWindow: Window) {

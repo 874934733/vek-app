@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.yingyangfly.baselib.R
 import com.yingyangfly.baselib.utils.ViewTool
-import kotlinx.android.synthetic.main.rv_empty.view.*
+import kotlinx.android.synthetic.main.rv_empty.view.empty_view_message
 
 /**
  * Author: YongChao

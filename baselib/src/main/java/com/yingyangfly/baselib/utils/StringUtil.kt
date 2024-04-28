@@ -2,7 +2,8 @@ package com.yingyangfly.baselib.utils
 
 import com.blankj.utilcode.util.RegexUtils
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 /**
  * @author wangsai

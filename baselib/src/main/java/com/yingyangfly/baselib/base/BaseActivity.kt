@@ -5,7 +5,6 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.KeyEvent
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
@@ -18,16 +17,13 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
 import com.yingyangfly.baselib.R
-import com.yingyangfly.baselib.bean.MessageBean
 import com.yingyangfly.baselib.databinding.ActivityBaseBinding
 import com.yingyangfly.baselib.dialog.LoadingDialog
-import com.yingyangfly.baselib.dialog.MessageDialog
-import com.yingyangfly.baselib.dialog.TaskFragment
 import com.yingyangfly.baselib.ext.getDbClass
 import com.yingyangfly.baselib.ext.initBar
-import com.yingyangfly.baselib.ext.toast
-import com.yingyangfly.baselib.router.RouterUrlCommon
-import com.yingyangfly.baselib.utils.*
+import com.yingyangfly.baselib.utils.ActivityManagers
+import com.yingyangfly.baselib.utils.ResUtil
+import com.yingyangfly.baselib.utils.ViewTool
 import gorden.rxbus2.RxBus
 
 /**
@@ -85,7 +81,6 @@ abstract class BaseActivity<DB : ViewDataBinding> : AppCompatActivity(), OnRefre
         initViews()
         initListener()
         initData()
-        initLiveEventBusUtil()
     }
 
     protected inline fun binding(block: DB.() -> Unit): DB {
@@ -260,52 +255,6 @@ abstract class BaseActivity<DB : ViewDataBinding> : AppCompatActivity(), OnRefre
             supportFragmentManager.executePendingTransactions()// 立即执行
         } catch (e: Exception) {
             e.printStackTrace()
-        }
-    }
-
-    private fun initLiveEventBusUtil() {
-        //展示任务弹窗
-        LiveEventBusUtil.observer<MessageBean>(this, RxBusCodes.SHOWTASKDIALOG) { bean ->
-            runOnUiThread {
-                val taskFragment = TaskFragment()
-                taskFragment.setTaskDesn(bean.getMessageData(), "")
-                taskFragment.onDialogClickListener = {
-                    if (TextUtils.isEmpty(bean.ext).not()) {
-                        if (TextUtils.equals("C", bean.businessID)) {
-                            val url =
-                                User.getTrainReportUrl() + "?userId=" + User.getUserId() + "&time=" + bean.ext + "&userToken=" + User.getToken()
-                            JumpUtil.jumpActivityWithUrl(
-                                RouterUrlCommon.WEB_VIEW_INTERACTION_JS, url, mContext
-                            )
-                        } else if (TextUtils.equals("D", bean.businessID)) {
-                            JumpUtil.jumpActivityWithUrl(
-                                RouterUrlCommon.trainContentDetails, bean.ext, mContext
-                            )
-                        }
-                    }
-                }
-                taskFragment.show(supportFragmentManager, "taskFragment")
-            }
-        }
-
-        //IM被踢下线
-        LiveEventBusUtil.observer<String>(this, RxBusCodes.ONKICKEDOFFLINE) {
-            runOnUiThread {
-                val messageDialog = MessageDialog()
-                messageDialog.setContent("", "您已经在其他端登录了当前账号，是否重新登录？", "提示")
-                messageDialog.onDialogClickListener = {
-                    JumpUtil.jumpActivity(RouterUrlCommon.login, mContext)
-                    finish()
-                }
-                messageDialog.show(supportFragmentManager, "messageDialog")
-            }
-        }
-
-        //网络异常
-        LiveEventBusUtil.observer<String>(this, RxBusCodes.ONCONNECTFAILED) {
-            runOnUiThread {
-                "网络异常，请检查您的网络设置".toast()
-            }
         }
     }
 

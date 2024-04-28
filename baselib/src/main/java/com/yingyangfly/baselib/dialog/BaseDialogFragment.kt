@@ -2,7 +2,11 @@ package com.yingyangfly.baselib.dialog
 
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.view.*
+import android.view.KeyEvent
+import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.DrawableRes
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment

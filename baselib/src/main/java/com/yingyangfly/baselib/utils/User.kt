@@ -5,7 +5,8 @@ import android.text.TextUtils
 import com.tencent.bugly.crashreport.CrashReport
 import com.yingyangfly.baselib.BaseApplication
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 object User {
 
