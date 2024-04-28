@@ -5,6 +5,7 @@ import android.text.Html
 import android.text.Spanned
 import android.util.TypedValue
 import android.view.View
+import android.widget.RelativeLayout
 import androidx.fragment.app.FragmentManager
 import com.yingyangfly.baselib.base.BaseActivity
 import com.yingyangfly.baselib.databinding.DialogTipBinding
@@ -25,14 +26,14 @@ class TipDialogFragment(val builder: TipDialogBuilder) : BaseDialogFragment<Dial
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (builder.title.isNullOrEmpty()) {
-            subViewBinding.tvTipDialogTitle.show(false)
+        if (builder.title.isNullOrEmpty() && builder.titleRes == 0) {
+            subViewBinding.tvTipDialogTitle.visibility = View.GONE
         } else {
             if (builder.title.isNullOrEmpty().not()) {
                 subViewBinding.tvTipDialogTitle.text = builder.title
             }
             if (builder.titleRes != 0) {
-                subViewBinding.tvTipDialogTitle.setTextColorResource(builder.titleRes)
+                subViewBinding.tvTipDialogTitle.setText(builder.titleRes)
             }
         }
 
@@ -42,13 +43,24 @@ class TipDialogFragment(val builder: TipDialogBuilder) : BaseDialogFragment<Dial
 
         if (builder.contentSize != 0) {
             subViewBinding.tvTipDialogContent.setTextSize(
-                TypedValue.COMPLEX_UNIT_PX,
-                builder.contentSize.toFloat()
+                TypedValue.COMPLEX_UNIT_DIP, builder.contentSize.toFloat()
             )
         }
 
+        if (builder.contentMarginTop != 0) {
+            val params =
+                subViewBinding.tvTipDialogContent.layoutParams as RelativeLayout.LayoutParams
+            params.topMargin = builder.contentMarginTop
+        }
+
+        if (builder.contentMarginBottom != 0) {
+            val params =
+                subViewBinding.tvTipDialogContent.layoutParams as RelativeLayout.LayoutParams
+            params.bottomMargin = builder.contentMarginBottom
+        }
+
         if (builder.topImg != 0) {
-            subViewBinding.ivTipDialogImg.show(true)
+            subViewBinding.ivTipDialogImg.visibility = View.VISIBLE
             subViewBinding.ivTipDialogImg.setImageResource(builder.topImg)
         }
 
@@ -61,23 +73,19 @@ class TipDialogFragment(val builder: TipDialogBuilder) : BaseDialogFragment<Dial
         }
 
         if (builder.leftBtnText.isNullOrEmpty()) {
-            subViewBinding.confirmLayout.show(false)
-            subViewBinding.tvConfirm.show(true)
+            subViewBinding.tvLeft.visibility = View.GONE
+            subViewBinding.vBtmDivider.visibility = View.GONE
         } else {
-            subViewBinding.confirmLayout.show(true)
-            subViewBinding.tvConfirm.show(false)
             subViewBinding.tvLeft.text = builder.leftBtnText
         }
         subViewBinding.tvLeft.setOnClickListener { builder.leftClickListener.invoke() }
 
         if (builder.rightBtnText.isNullOrEmpty()) {
-            subViewBinding.tvConfirm.show(false)
-            subViewBinding.tvRight.show(false)
+            subViewBinding.tvRight.visibility = View.GONE
+            subViewBinding.vBtmDivider.visibility = View.GONE
         } else {
-            subViewBinding.tvConfirm.text = builder.rightBtnText
             subViewBinding.tvRight.text = builder.rightBtnText
         }
-        subViewBinding.tvConfirm.setOnClickListener { builder.rightClickListener.invoke() }
         subViewBinding.tvRight.setOnClickListener { builder.rightClickListener.invoke() }
 
         if (builder.leftTextColor != 0) {
@@ -86,6 +94,7 @@ class TipDialogFragment(val builder: TipDialogBuilder) : BaseDialogFragment<Dial
     }
 
     override fun initViews() {
+
 
     }
 
@@ -106,6 +115,8 @@ class TipDialogFragment(val builder: TipDialogBuilder) : BaseDialogFragment<Dial
 
         // 内容字体大小
         var contentSize = 0
+        var contentMarginTop = 0
+        var contentMarginBottom = 0
 
         fun title(title: String = "", titleRes: Int = 0): TipDialogBuilder {
             this.title = title
@@ -153,6 +164,15 @@ class TipDialogFragment(val builder: TipDialogBuilder) : BaseDialogFragment<Dial
          */
         fun contentTextSize(sizeDp: Int): TipDialogBuilder {
             contentSize = sizeDp
+            return this
+        }
+
+        /**
+         * 设置内容头部底部边距
+         */
+        fun contentMarginTopBottom(sizeTop: Int, sizeBottom: Int): TipDialogBuilder {
+            contentMarginTop = sizeTop
+            contentMarginBottom = sizeBottom
             return this
         }
 
@@ -209,20 +229,16 @@ class TipDialogFragment(val builder: TipDialogBuilder) : BaseDialogFragment<Dial
         private var cancelText = "取消"
         private var confirmText = "确定"
         fun show(act: BaseActivity<*>) {
-            TipDialogBuilder().content(message, 0)
-                .leftBtnText(cancelText)
-                .rightBtnText(confirmText)
+            TipDialogBuilder().content(message, 0).leftBtnText(cancelText).rightBtnText(confirmText)
                 .leftClick({
                     if (l != null) {
                         l!!()
                     }
-                }, dimiss = true)
-                .rightClick({
+                }, dimiss = true).rightClick({
                     if (r != null) {
                         r!!()
                     }
-                }, true)
-                .show(act.supportFragmentManager)
+                }, true).show(act.supportFragmentManager)
         }
 
         fun message(message: String): TipDialogBuilder {
@@ -251,12 +267,12 @@ class TipDialogFragment(val builder: TipDialogBuilder) : BaseDialogFragment<Dial
             this.r = n
             return this
         }
+
     }
 
     override fun initListener() {
 
     }
-
 }
 
 fun Any.dialog(message: String): TipDialogFragment.TipDialogBuilder {

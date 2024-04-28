@@ -97,36 +97,30 @@ fun TextView.setTextColorResource(res: Int) {
 }
 
 fun Array<String>.check(act: FragmentActivity, func: () -> Unit) = this.apply {
-    XXPermissions.with(act)
-        .permission(this)
-        .request(object : OnPermissionCallback {
-            override fun onDenied(permissions: MutableList<String>, doNotAskAgain: Boolean) {
-                if (doNotAskAgain) {
-                    getPermissions()
-                }
+    XXPermissions.with(act).permission(this).request(object : OnPermissionCallback {
+        override fun onDenied(permissions: MutableList<String>, doNotAskAgain: Boolean) {
+            if (doNotAskAgain) {
+                getPermissions()
             }
+        }
 
-            fun getPermissions() {
-                TipDialogFragment.TipDialogBuilder()
-                    .content("当前应用缺少必要权限,请点击“设置”-“权限”-“权限管理”打开所需权限", 0)
-                    .leftBtnText("退出")
-                    .rightBtnText("设置")
-                    .leftClick({ null }, true)
-                    .rightClick({
-                        XXPermissions.startPermissionActivity(act)
-                        null
-                    }, true)
-                    .show(act.supportFragmentManager)
-            }
+        fun getPermissions() {
+            TipDialogFragment.TipDialogBuilder()
+                .content("当前应用缺少必要权限,请点击“设置”-“权限”-“权限管理”打开所需权限", 0)
+                .leftBtnText("退出").rightBtnText("设置").leftClick({ null }, true).rightClick({
+                    XXPermissions.startPermissionActivity(act)
+                    null
+                }, true).show(act.supportFragmentManager)
+        }
 
-            override fun onGranted(permissions: MutableList<String>, allGranted: Boolean) {
-                if (allGranted) { // 全部获取权限成功
-                    func()
-                } else { // 部分获取权限成功
-                    getPermissions()
-                }
+        override fun onGranted(permissions: MutableList<String>, allGranted: Boolean) {
+            if (allGranted) { // 全部获取权限成功
+                func()
+            } else { // 部分获取权限成功
+                getPermissions()
             }
-        })
+        }
+    })
 }
 
 
@@ -135,14 +129,7 @@ fun Array<String>.check(act: FragmentActivity, func: () -> Unit) = this.apply {
  */
 fun WebView.imgReset() {
     loadUrl(
-        "javascript:(function(){" +
-                "var objs = document.getElementsByTagName('img'); " +
-                "for(var i=0;i<objs.length;i++) " +
-                "{"
-                + "var img = objs[i]; " +
-                " img.style.maxWidth = '100%'; img.style.height = 'auto'; " +
-                "}" +
-                "})()"
+        "javascript:(function(){" + "var objs = document.getElementsByTagName('img'); " + "for(var i=0;i<objs.length;i++) " + "{" + "var img = objs[i]; " + " img.style.maxWidth = '100%'; img.style.height = 'auto'; " + "}" + "})()"
     )
 }
 
@@ -168,8 +155,7 @@ fun getScaleAnimation(): Animation {
     val end = 0.94f
     val start = 1.0f
     val scaleAnimation: Animation = ScaleAnimation(
-        start, end, start, end,
-        Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
+        start, end, start, end, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
     )
     scaleAnimation.duration = 100
     scaleAnimation.fillAfter = true
@@ -184,8 +170,7 @@ fun getEndAnimation(): Animation {
     val end = 0.94f
     val start = 1.0f
     val endAnimation: Animation = ScaleAnimation(
-        end, start, end, start,
-        Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
+        end, start, end, start, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
     )
     endAnimation.duration = 100
     endAnimation.fillAfter = true

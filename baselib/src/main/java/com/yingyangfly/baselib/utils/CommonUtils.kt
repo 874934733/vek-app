@@ -1,5 +1,11 @@
 package com.yingyangfly.baselib.utils
 
+import android.app.Activity
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.util.Base64
+import android.view.inputmethod.InputMethodManager
+import com.blankj.utilcode.util.StringUtils
 import java.io.File
 
 /**
@@ -79,5 +85,52 @@ object CommonUtils {
         } else {
             false
         }
+    }
+
+
+    fun string2Bitmap(string: String?): Bitmap? {
+        //将字符串转换成Bitmap类型
+        var bitmap: Bitmap? = null
+        try {
+            val bitmapArray: ByteArray
+            bitmapArray = Base64.decode(string, Base64.DEFAULT)
+            bitmap = BitmapFactory.decodeByteArray(bitmapArray, 0, bitmapArray.size)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return bitmap
+    }
+
+    /**
+     * 隐藏软键盘(只适用于Activity，不适用于Fragment)
+     */
+    fun hideSoftKeyboard(activity: Activity) {
+        val view = activity.currentFocus
+        if (view != null) {
+            val inputMethodManager =
+                activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(
+                view.windowToken,
+                InputMethodManager.HIDE_NOT_ALWAYS
+            )
+        }
+    }
+
+    /**
+     * 抽取URL
+     *
+     * @param rawInfo rawInfo
+     * @return url
+     */
+    fun extractUrl(rawInfo: String): String {
+        if (StringUtils.isEmpty(rawInfo)) {
+            return ""
+        }
+        for (string in rawInfo.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
+            if (string.startsWith("http")) {
+                return string
+            }
+        }
+        return ""
     }
 }

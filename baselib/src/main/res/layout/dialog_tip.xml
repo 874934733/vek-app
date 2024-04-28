@@ -1,108 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingTop="24dp">
 
         <ImageView
             android:id="@+id/iv_tip_dialog_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
             android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:contentDescription="TODO" />
 
         <TextView
             android:id="@+id/tv_tip_dialog_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/divider_71px"
-            android:textColor="@color/color_FFF6A532"
-            android:textSize="@dimen/divider_42px"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="恭喜您" />
+            android:layout_below="@id/iv_tip_dialog_img"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16dp"
+            android:textColor="#cc000000"
+            android:textSize="18sp"
+            tools:text="复诊挂号说明" />
 
         <TextView
             android:id="@+id/tv_tip_dialog_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/divider_65px"
-            android:layout_marginTop="@dimen/divider_29px"
-            android:layout_marginEnd="@dimen/divider_65px"
-            android:textColor="@color/color_FF333333"
-            android:textSize="@dimen/divider_28px"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_tip_dialog_title"
-            tools:text="通知" />
+            android:layout_below="@id/tv_tip_dialog_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:textColor="@color/txtBlackD8"
+            android:textSize="16sp"
+            tools:text="您选择的就诊人未通过线上大医课堂或线下医院，在xxx专家工作室预约并成功就诊xxx医生，视为初诊预约。本次预约就诊后，下次您使用同一就诊人预约该医生，自动享受复诊优惠。" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tv_tip_dialog_content"
+            android:layout_marginTop="20dp"
+            android:background="#FFF1F0F5" />
 
         <LinearLayout
-            android:id="@+id/confirmLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/divider_92px"
-            android:layout_marginTop="@dimen/divider_72px"
-            android:layout_marginEnd="@dimen/divider_100px"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/divider_53px"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_tip_dialog_content">
+            android:layout_height="48dp"
+            android:layout_below="@id/line"
+            android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatButton
+            <TextView
                 android:id="@+id/tv_left"
-                android:layout_width="@dimen/divider_204px"
-                android:layout_height="@dimen/divider_59px"
-                android:background="@drawable/bg_dialog_tip_left"
-                android:gravity="center"
-                android:textColor="@color/color_FF4D7EFF"
-                android:textSize="@dimen/divider_24px"
-                tools:text="稍后再看" />
-
-            <View
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/tv_right"
-                android:layout_width="@dimen/divider_204px"
-                android:layout_height="@dimen/divider_59px"
-                android:background="@drawable/bg_dialog_tip_right"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/divider_24px"
-                tools:text="立即查看" />
+                android:textColor="#cc000000"
+                android:textSize="18sp"
+                tools:text="我知道了" />
+
+            <View
+                android:id="@+id/v_btm_divider"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#FFF1F0F5" />
+
+            <TextView
+                android:id="@+id/tv_right"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/color_1890FF"
+                android:textSize="18sp"
+                tools:text="我知道了" />
 
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/tvConfirm"
-            android:layout_width="@dimen/divider_204px"
-            android:layout_height="@dimen/divider_59px"
-            android:layout_marginTop="@dimen/divider_72px"
-            android:layout_marginBottom="@dimen/divider_53px"
-            android:background="@drawable/bg_dialog_tip_right"
-            android:gravity="center"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/divider_24px"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/confirmLayout"
-            tools:text="立即查看" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 </layout>
