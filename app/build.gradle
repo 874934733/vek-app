@@ -95,6 +95,7 @@ android {
 
 dependencies {
     implementation project(path: ':baselib')
+    implementation project(path: ':home')
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     implementation(rootProject.ext.androidx.kotlin_lib)
     implementation(rootProject.ext.androidx.kotlin_core)
