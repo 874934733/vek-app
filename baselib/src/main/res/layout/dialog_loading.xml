@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ovlImage"
+        android:layout_width="@dimen/divider_520px"
+        android:layout_height="@dimen/divider_520px"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_dialog_ring" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/fishImage"
+        android:layout_width="@dimen/divider_360px"
+        android:layout_height="@dimen/divider_416px"
+        android:layout_gravity="center"
+        android:scaleType="centerInside"/>
+
+</FrameLayout>

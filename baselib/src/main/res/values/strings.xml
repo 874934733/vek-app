@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">base</string>
+    <string name="good" tools:ignore="ResourceName">好的</string>
+    <string name="there_is_currently_no_data_available">暂时没有数据</string>
+    <string name="please_rate_this_interview" tools:ignore="ResourceName">请为本次问诊打分</string>
+    <string name="mark" tools:ignore="ResourceName">评分</string>
+    <string name="cancel" tools:ignore="ResourceName">取消</string>
+    <string name="complete" tools:ignore="ResourceName">完成</string>
+    <string name="dialog_determine">确定</string>
+</resources>

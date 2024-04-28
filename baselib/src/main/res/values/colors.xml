@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFFFF</color>
+    <color name="color_1890FF">#1890FF</color>
+    <color name="CC000000">#CC000000</color>
+    <color name="color_00ff00ff">#00ff00ff</color>
+    <color name="color_FFF1F0F5">#FFF1F0F5</color>
+    <!--分割线颜色-->
+    <color name="color_F5F5F5">#F5F5F5</color>
+    <color name="color_d8000000">#d8000000</color>
+    <color name="color_FF5F3100">#FF5F3100</color>
+    <color name="transparent">#00000000</color><!-- 透明   -->
+    <!--    标题底部边框颜色-->
+    <color name="color_FFF6A532">#FFF6A532</color>
+    <color name="color_FF333333">#FF333333</color>
+    <color name="color_FF4D7EFF">#FF4D7EFF</color>
+    <color name="color_FF054DFF">#FF054DFF</color>
+    <color name="color_FF4A76FF">#FF4A76FF</color>
+    <color name="coloe_D8D8D8">#D8D8D8</color>
+    <color name="color_B3000000">#B3000000</color>
+    <color name="coloe_FF81AEFF">#FF81AEFF</color>
+    <color name="bgDefault">#ffFaFaFa</color>
+    <color name="colorTxtDefault">#D8000000</color>
+    <color name="color_000000">#000000</color>
+    <color name="color_FF222222">#FF222222</color>
+    <color name="color_FF4174FF">#FF4174FF</color>
+    <color name="color_FF6D9AFF">#FF6D9AFF</color>
+    <color name="color_FC426CFB">#FC426CFB</color>
+    <color name="color_FF35BEFC">#FF35BEFC</color>
+    <color name="color_FF9FBBFF">#FF9FBBFF</color>
+    <color name="color_FFD2DDFF">#FFD2DDFF</color>
+    <color name="color_D63658F7">#D63658F7</color>
+    <color name="color_FF3961A1">#FF3961A1</color>
+    <color name="color_FF6BB0FF">#FF6BB0FF</color>
+    <color name="color_FF979797">#FF979797</color>
+    <color name="color_FF3855FF">#FF3855FF</color>
+    <color name="color_FF81D7FF">#FF81D7FF</color>
+    <color name="color_FF1AA1FF">#FF1AA1FF</color>
+    <color name="color_FF92ADFF">#FF92ADFF</color>
+    <color name="color_FF1532A1">#FF1532A1</color>
+</resources>

@@ -1,0 +1,128 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        consumerProguardFiles "consumer-rules.pro"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName(),
+                             "room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            buildConfigField "String", "TENCENT_IM_APPID", "\"1400823270\""
+            buildConfigField "String", "TENCENT_LICENCEURL", "\"https://license.vod2.myqcloud.com/license/v2/1300835310_1/v_cube.license\""
+            buildConfigField "String", "TENCENT_LICENCEKEY", "\"0258811f9d756fea82c9a2d2cbd439bd\""
+            buildConfigField "Boolean", "SINGLE_MODULE", "${singleModule}"
+            buildConfigField "String", "BUGLY_APPID", "\"d400f20398\""
+            buildConfigField "String", "API_URL", "\"https://www.yingyangfly.com/hcp-app-api-dev\""
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled false
+            buildConfigField "String", "TENCENT_IM_APPID", "\"1400823270\""
+            buildConfigField "String", "TENCENT_LICENCEURL", "\"https://license.vod2.myqcloud.com/license/v2/1300835310_1/v_cube.license\""
+            buildConfigField "String", "TENCENT_LICENCEKEY", "\"0258811f9d756fea82c9a2d2cbd439bd\""
+            buildConfigField "Boolean", "SINGLE_MODULE", "${singleModule}"
+            buildConfigField "String", "BUGLY_APPID", "\"ad3db4d529\""
+            buildConfigField "String", "API_URL", "\"https://www.yingyangfly.com/hcp-app-api-uat\""
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+
+    api fileTree(exclude: '*.bak', dir: 'libs')
+    implementation(rootProject.ext.androidx.kotlin_lib)
+    implementation(rootProject.ext.androidx.kotlin_core)
+    implementation(rootProject.ext.androidx.appcompat)
+    implementation(rootProject.ext.androidx.material)
+    implementation(rootProject.ext.androidx.constraintlayout)
+    implementation(rootProject.ext.dependencies.okhttpprofiler)
+    // multidex
+    api(rootProject.ext.androidx.multidex)
+    //SmartRefreshLayout：下拉刷新， 上拉加载更多  https://github.com/scwang90/SmartRefreshLayout
+    api(rootProject.ext.dependencies.smartRefreshLayout)
+    // 基础依赖包，必须要依赖   https://github.com/gyf-dev/ImmersionBar
+    api(rootProject.ext.dependencies.immersionbar)
+    // kotlin扩展（可选）
+    api(rootProject.ext.dependencies.immersionbar_ktx)
+    //    编写更简洁、惯用的Kotlin代码
+    api(rootProject.ext.androidx.core_ktx)
+    //Logger日志
+    api(rootProject.ext.dependencies.logger)
+    //bugly
+    api(rootProject.ext.dependencies.bugly)
+    //ARouter
+    api(rootProject.ext.dependencies.arouter_api)
+    kapt(rootProject.ext.dependencies.arouter_compiler)
+    api(rootProject.ext.dependencies.utilcode)
+    // 协程
+    api(rootProject.ext.dependencies.kotlinx_core)
+    api(rootProject.ext.dependencies.kotlinx_android)
+    // Retrofit2.0
+    api(rootProject.ext.dependencies.retrofit2)
+    api(rootProject.ext.dependencies.converter_gson)
+    api(rootProject.ext.dependencies.logging_interceptor)
+    // 网络请求拦截器
+    api(rootProject.ext.dependencies.ohkttp3)
+    //RxJava2.0
+    api(rootProject.ext.dependencies.rxjava)
+    api(rootProject.ext.dependencies.rxandroid)
+    api(rootProject.ext.dependencies.rxkotlin)
+    api(rootProject.ext.androidx.flexbox)
+    //api 'lib.gorden.rxbus2:rxbus:2.0.1'
+    api(rootProject.ext.dependencies.live_event_bus_x)
+    api(rootProject.ext.dependencies.glide)
+    kapt(rootProject.ext.dependencies.glide_compiler)
+    api(rootProject.ext.dependencies.mmkv_ktx)
+    api(rootProject.ext.dependencies.rxbus)
+    api(rootProject.ext.dependencies.retrofit2_adapter_rxjava2)
+    api(rootProject.ext.dependencies.xxPermission)
+}
