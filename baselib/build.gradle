@@ -32,22 +32,16 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
-            buildConfigField "String", "TENCENT_IM_APPID", "\"1400823270\""
-            buildConfigField "String", "TENCENT_LICENCEURL", "\"https://license.vod2.myqcloud.com/license/v2/1300835310_1/v_cube.license\""
-            buildConfigField "String", "TENCENT_LICENCEKEY", "\"0258811f9d756fea82c9a2d2cbd439bd\""
             buildConfigField "Boolean", "SINGLE_MODULE", "${singleModule}"
-            buildConfigField "String", "BUGLY_APPID", "\"d400f20398\""
+            buildConfigField "String", "BUGLY_APPID", "\"fa569117d6\""
             buildConfigField "String", "API_URL", "\"https://www.yingyangfly.com/hcp-app-api-dev\""
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         release {
             minifyEnabled false
-            buildConfigField "String", "TENCENT_IM_APPID", "\"1400823270\""
-            buildConfigField "String", "TENCENT_LICENCEURL", "\"https://license.vod2.myqcloud.com/license/v2/1300835310_1/v_cube.license\""
-            buildConfigField "String", "TENCENT_LICENCEKEY", "\"0258811f9d756fea82c9a2d2cbd439bd\""
             buildConfigField "Boolean", "SINGLE_MODULE", "${singleModule}"
-            buildConfigField "String", "BUGLY_APPID", "\"ad3db4d529\""
+            buildConfigField "String", "BUGLY_APPID", "\"fa569117d6\""
             buildConfigField "String", "API_URL", "\"https://www.yingyangfly.com/hcp-app-api-uat\""
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

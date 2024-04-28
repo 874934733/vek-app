@@ -85,9 +85,7 @@ ext {
             "glide_compiler"           : 'com.github.bumptech.glide:compiler:4.12.0',
 
             "utilcode"                 : 'com.blankj:utilcode:1.30.7',
-            "gson"                     : 'com.google.code.gson:gson:2.8.5',
             "rxbus"                    : 'lib.gorden.rxbus2:rxbus:2.0.1',
-            "fastjson"                 : 'com.alibaba:fastjson:1.1.70.android',
             // 动态申请权限 https://github.com/getActivity/XXPermissions
             "xxPermission"             : "com.github.getActivity:XXPermissions:18.3"
     ]
