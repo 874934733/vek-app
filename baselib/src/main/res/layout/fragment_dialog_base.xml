@@ -6,7 +6,6 @@
     </data>
 
     <LinearLayout
-        android:id="@+id/llyt_dialog"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/transparent"
@@ -15,13 +14,14 @@
 
         <LinearLayout
             android:id="@+id/llyt_content_dialog"
-            android:layout_width="@dimen/divider_667px"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_dialog_base"
             android:gravity="center"
-            android:minHeight="@dimen/divider_427px"
             android:orientation="vertical">
 
+
         </LinearLayout>
+
     </LinearLayout>
 </layout>

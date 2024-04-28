@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
-import com.yingyangfly.baselib.R;
 
 import java.io.ByteArrayOutputStream;
 
@@ -21,33 +20,14 @@ import java.io.ByteArrayOutputStream;
  */
 public class ImgUtil {
 
-    public static void loadGameBackground(Context context, String url, final ImageView img) {
-        RequestOptions options = new RequestOptions()
-                .placeholder(R.drawable.bg_game_background_settlement)
-                .error(R.drawable.bg_game_background_settlement)
-                .diskCacheStrategy(DiskCacheStrategy.ALL);
-        Glide.with(context)
-                .load(url)
-                .apply(options)
-                .into(img);
-    }
-
     public static void loadImgCircle(Context context, String imgUrl, ImageView img, int dPlaceHolder, int dError) {
-        RequestOptions options = new RequestOptions()
-                .placeholder(dPlaceHolder)
-                .error(dError)
-                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
-                .diskCacheStrategy(DiskCacheStrategy.ALL);
+        RequestOptions options = new RequestOptions().placeholder(dPlaceHolder).error(dError).apply(RequestOptions.bitmapTransform(new CircleCrop())).diskCacheStrategy(DiskCacheStrategy.ALL);
 
         Glide.with(context).load(imgUrl).apply(options).into(img);
     }
 
     public static void loadImgHeadCircle(Context context, String imgUrl, ImageView img, int dPlaceHolder, int dError) {
-        RequestOptions options = new RequestOptions()
-                .placeholder(dPlaceHolder)
-                .error(dError)
-                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
-                .diskCacheStrategy(DiskCacheStrategy.NONE);
+        RequestOptions options = new RequestOptions().placeholder(dPlaceHolder).error(dError).apply(RequestOptions.bitmapTransform(new CircleCrop())).diskCacheStrategy(DiskCacheStrategy.NONE);
 
         Glide.with(context).load(imgUrl).apply(options).into(img);
     }
@@ -58,25 +38,18 @@ public class ImgUtil {
      * @description: 设置加载占位符及加载失败
      */
     public static void loadImgPlaceHolderError(Context context, String imgUrl, ImageView img, int dPlaceHolder, int dError) {
-        RequestOptions options = new RequestOptions()
-                .placeholder(dPlaceHolder)
-                .error(dError)
-                .diskCacheStrategy(DiskCacheStrategy.ALL);
+        RequestOptions options = new RequestOptions().placeholder(dPlaceHolder).error(dError).diskCacheStrategy(DiskCacheStrategy.ALL);
 
         Glide.with(context).load(imgUrl).apply(options).into(img);
     }
 
     public static void loadImg(Context context, String imgUrl, ImageView img) {
-        RequestOptions options = new RequestOptions()
-                .diskCacheStrategy(DiskCacheStrategy.ALL);
+        RequestOptions options = new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL);
         Glide.with(context).load(imgUrl).apply(options).into(img);
     }
 
     public static void zoomImg(Context context, String imgUrl, ImageView img) {
-        Glide.with(context)
-                .asBitmap()
-                .load(imgUrl)
-                .into(new TransformationUtils(img));
+        Glide.with(context).asBitmap().load(imgUrl).into(new TransformationUtils(img));
     }
 
     /**
@@ -89,10 +62,7 @@ public class ImgUtil {
      * @param dError
      */
     public static void loadImg(Context context, String imgUrl, ImageView img, int dPlaceHolder, int dError) {
-        RequestOptions options = new RequestOptions()
-                .placeholder(dPlaceHolder)
-                .error(dError)
-                .diskCacheStrategy(DiskCacheStrategy.ALL);
+        RequestOptions options = new RequestOptions().placeholder(dPlaceHolder).error(dError).diskCacheStrategy(DiskCacheStrategy.ALL);
         Glide.with(context).load(imgUrl).apply(options).into(img);
     }
 
@@ -112,10 +82,7 @@ public class ImgUtil {
 
     public static void loadRoundImg(Context context, String imgUrl, ImageView img, int dPlaceHolder, int dError, int radius) {
 
-        RequestOptions options = new RequestOptions()
-                .placeholder(dPlaceHolder)
-                .error(dError)
-                .diskCacheStrategy(DiskCacheStrategy.ALL);
+        RequestOptions options = new RequestOptions().placeholder(dPlaceHolder).error(dError).diskCacheStrategy(DiskCacheStrategy.ALL);
 
         Glide.with(context).load(imgUrl).transform(new GlideRoundTransform(context, radius)).apply(options).into(img);
     }
@@ -125,8 +92,7 @@ public class ImgUtil {
     }
 
     public static void loadRoundImg(Context context, String imgUrl, ImageView img) {
-        RequestOptions options = new RequestOptions()
-                .diskCacheStrategy(DiskCacheStrategy.ALL);
+        RequestOptions options = new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL);
         Glide.with(context).load(imgUrl).transform(new GlideRoundTransform(context, 5)).apply(options).into(img);
     }
 
@@ -156,11 +122,7 @@ public class ImgUtil {
 //        LogUtil.Companion.i("output option " + options);
         while (output.toByteArray().length > maxKb && options > 0) {
             output.reset(); //清空output
-            bitmap.compress(
-                    Bitmap.CompressFormat.JPEG,
-                    options,
-                    output
-            ); //这里压缩options%，把压缩后的数据存放到output中
+            bitmap.compress(Bitmap.CompressFormat.JPEG, options, output); //这里压缩options%，把压缩后的数据存放到output中
 //            LogUtil.Companion.i("output " + output.toByteArray().length);
             options -= 10;
         }
@@ -175,10 +137,7 @@ public class ImgUtil {
      * 加载自定义宽高圆角图片
      */
     public static void loadRoundImgWidth(Context context, String imgUrl, ImageView img, int dPlaceHolder, int dError, int radius, int width) {
-        RequestOptions options = new RequestOptions()
-                .placeholder(dPlaceHolder)
-                .error(dError)
-                .diskCacheStrategy(DiskCacheStrategy.ALL);
+        RequestOptions options = new RequestOptions().placeholder(dPlaceHolder).error(dError).diskCacheStrategy(DiskCacheStrategy.ALL);
 
         ViewGroup.LayoutParams params = img.getLayoutParams();
         params.height = width;
@@ -192,10 +151,7 @@ public class ImgUtil {
      * 加载自定义宽高圆角图片
      */
     public static void loadRoundImgWidthThumbnail(Context context, String imgUrl, ImageView img, int dPlaceHolder, int dError, int radius, int width) {
-        RequestOptions options = new RequestOptions()
-                .placeholder(dPlaceHolder)
-                .error(dError)
-                .diskCacheStrategy(DiskCacheStrategy.ALL);
+        RequestOptions options = new RequestOptions().placeholder(dPlaceHolder).error(dError).diskCacheStrategy(DiskCacheStrategy.ALL);
 
         ViewGroup.LayoutParams params = img.getLayoutParams();
         params.height = width;
@@ -209,10 +165,7 @@ public class ImgUtil {
      * 加载自定义宽高圆角图片
      */
     public static void loadRoundImgWidthThumbnail(Context context, String imgUrl, ImageView img, int dPlaceHolder, int dError, int radius, int width, float sizeMultiplier) {
-        RequestOptions options = new RequestOptions()
-                .placeholder(dPlaceHolder)
-                .error(dError)
-                .diskCacheStrategy(DiskCacheStrategy.ALL);
+        RequestOptions options = new RequestOptions().placeholder(dPlaceHolder).error(dError).diskCacheStrategy(DiskCacheStrategy.ALL);
 
         ViewGroup.LayoutParams params = img.getLayoutParams();
         params.height = width;

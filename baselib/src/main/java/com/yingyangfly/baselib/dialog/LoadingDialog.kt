@@ -2,20 +2,12 @@ package com.yingyangfly.baselib.dialog
 
 import android.app.AlertDialog
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.Window
-import android.view.WindowManager
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.widget.TextView
-import androidx.appcompat.widget.AppCompatImageView
 import com.yingyangfly.baselib.R
-import com.yingyangfly.baselib.utils.AppUtil
-import com.yingyangfly.baselib.utils.ViewTool
 
 /**
  * Loading

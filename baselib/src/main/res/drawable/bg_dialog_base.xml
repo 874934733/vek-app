@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <solid android:color="@android:color/white" />
-    <corners android:radius="@dimen/divider_42px" />
+    <!--android:width="1dp"-->
+    <solid android:color="@color/white" />
+    <!--  该圆角值不要动， 第一期设计稿相关的弹框就是该值12  -->
+    <corners android:radius="12dp" />
 </shape>

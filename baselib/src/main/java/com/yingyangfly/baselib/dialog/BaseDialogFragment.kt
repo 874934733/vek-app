@@ -12,9 +12,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
 import com.yingyangfly.baselib.databinding.FragmentDialogBaseBinding
 import com.yingyangfly.baselib.ext.getDbClass
-import com.yingyangfly.baselib.ext.initBar
 import com.yingyangfly.baselib.utils.ScreenUtil
-import com.yingyangfly.baselib.utils.ViewTool
 
 /**
  * Author: YongChao

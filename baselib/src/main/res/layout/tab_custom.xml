@@ -1,23 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tool="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="center_vertical"
-    android:gravity="center_vertical"
-    android:orientation="horizontal">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/img_tab"
-        android:layout_width="@dimen/divider_30px"
-        android:layout_height="@dimen/divider_30px" />
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="7dp">
+
+        <ImageView
+            android:id="@+id/img_tab"
+            android:layout_width="25dp"
+            android:layout_height="25dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/ivTabBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/view_12"
+            android:layout_gravity="start|top"
+            android:layout_marginStart="@dimen/view_18"
+            android:gravity="center"
+            android:minWidth="@dimen/view_4"
+            android:paddingHorizontal="@dimen/view_4"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/view_8"
+            android:visibility="invisible"
+            app:bl_corners_radius="@dimen/view_6"
+            app:bl_solid_color="@color/red"
+            tools:background="@color/red"
+            tools:text="99+"
+            tools:visibility="visible" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/tv_tab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/divider_24px"
-        tool:text="数据监控" />
+        android:layout_gravity="center"
+        android:layout_marginBottom="1dp"
+        android:textColor="@drawable/tv_tab_selector"
+        android:textSize="10sp" />
 
 </LinearLayout>

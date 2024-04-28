@@ -119,4 +119,6 @@ dependencies {
     api(rootProject.ext.dependencies.rxbus)
     api(rootProject.ext.dependencies.retrofit2_adapter_rxjava2)
     api(rootProject.ext.dependencies.xxPermission)
+    //view 背景
+    api 'com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.5'
 }

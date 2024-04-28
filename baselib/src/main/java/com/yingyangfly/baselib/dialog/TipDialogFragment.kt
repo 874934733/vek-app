@@ -9,8 +9,6 @@ import android.widget.RelativeLayout
 import androidx.fragment.app.FragmentManager
 import com.yingyangfly.baselib.base.BaseActivity
 import com.yingyangfly.baselib.databinding.DialogTipBinding
-import com.yingyangfly.baselib.ext.setTextColorResource
-import com.yingyangfly.baselib.ext.show
 
 /**
  * @author gold
