@@ -1,0 +1,115 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+//多渠道打包
+apply plugin: 'walle'
+
+def appId = "com.yingyang.extractaudiovideo"
+android {
+    signingConfigs {
+        debug {
+            storeFile file(RELEASE_STOREFILE)
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+        }
+        release {
+            storeFile file(RELEASE_STOREFILE)
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+        }
+    }
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        applicationId appId
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+        // 只保留指定和默认的资源
+        resConfigs "zh"//去掉无用的国际语言
+        ndkVersion '22.1.7171670'
+        ndk {
+            //选择要添加的对应 cpu 类型的 .so 库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false // 打开混淆
+            shrinkResources false // 是否清理无用资源,依赖于minifyEnabled
+            zipAlignEnabled true // 是否启用zipAlign压缩
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+            debuggable true
+            resValue "string", "app_name", "未来蓝豚认知平台dev"
+            manifestPlaceholders = [ENVIRONMENT: "appdebug",
+                                    app_icon   : "@mipmap/ic_launcher", package_name: appId]
+        }
+        release {
+            minifyEnabled false // 打开混淆
+            shrinkResources false // 是否清理无用资源,依赖于minifyEnabled
+            zipAlignEnabled true // 是否启用zipAlign压缩
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            debuggable true
+            resValue "string", "app_name", "未来蓝豚认知平台"
+            manifestPlaceholders = [ENVIRONMENT: "appdebug",
+                                    app_icon   : "@mipmap/ic_launcher", package_name: appId]
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    buildFeatures {
+        dataBinding true
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+    implementation(rootProject.ext.androidx.kotlin_lib)
+    implementation(rootProject.ext.androidx.kotlin_core)
+    implementation(rootProject.ext.androidx.appcompat)
+    implementation(rootProject.ext.androidx.material)
+    implementation(rootProject.ext.androidx.constraintlayout)
+    testApi(rootProject.ext.androidx.junit)
+    androidTestApi(rootProject.ext.androidx.runner)
+    androidTestApi(rootProject.ext.androidx.espresso_core)
+}
+
+walle {
+    // 指定渠道包的输出路径
+    apkOutputFolder = new File("${project.buildDir}/outputs/channels")
+    // 定制渠道包的APK的文件名称
+    apkFileNameFormat = '${channel}-${buildType}-${appName}-v${versionName}-${versionCode}-${buildTime}.apk'
+    // 渠道配置文件
+    channelFile = new File("${project.getProjectDir()}/channel")
+}

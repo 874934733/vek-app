@@ -1,0 +1,110 @@
+if (singleModule.toBoolean()) {
+    // 作为独立app应用运行
+    apply plugin: 'com.android.application'
+} else {
+    // 作为组件运行
+    apply plugin: 'com.android.library'
+}
+
+apply plugin: 'kotlin-android'
+// ARouter
+apply plugin: 'kotlin-kapt'
+/*序列化插件*/
+apply plugin: 'kotlin-parcelize'
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+def singleRun = singleModule.toBoolean()
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        // 如果是独立模块，则使用当前组件的包名
+        if (singleRun) {
+            applicationId rootProject.ext.android.applicationId
+        }
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        flavorDimensions "versionCode"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+        // 只保留指定和默认的资源
+        resConfigs "zh"//去掉无用的国际语言
+        ndk {
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+        }
+        generatedDensities = []
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false // 打开混淆
+            shrinkResources false // 是否清理无用资源,依赖于minifyEnabled
+            zipAlignEnabled false // 是否启用zipAlign压缩
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            debuggable true
+        }
+        release {
+            minifyEnabled false // 打开混淆
+            shrinkResources false // 是否清理无用资源,依赖于minifyEnabled
+            zipAlignEnabled false // 是否启用zipAlign压缩
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            debuggable false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        dataBinding true
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            if (singleRun) {
+                // 如果是application，则 编译主目录下AndroidManifest.xml文件
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            } else {
+                // 如果是library，合并到宿主，则 编译manifest目录下AndroidManifest.xml文件
+                manifest.srcFile 'src/main/manifest/AndroidManifest.xml'
+                resources {
+                    // 正式版本时，排除manifest文件夹下所有的调试文件
+                    exclude 'src/main/manifest/*'
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    // 基类lib包
+    implementation project(path: ':baselib')
+    // ARtouter
+    implementation(rootProject.ext.dependencies.arouter_api)
+    kapt(rootProject.ext.dependencies.arouter_compiler)
+    api(rootProject.ext.androidx.kotlin_lib)
+    api(rootProject.ext.androidx.kotlin_core)
+    api(rootProject.ext.androidx.appcompat)
+    api(rootProject.ext.androidx.material)
+    api(rootProject.ext.androidx.constraintlayout)
+    testApi(rootProject.ext.androidx.junit)
+    androidTestApi(rootProject.ext.androidx.runner)
+    androidTestApi(rootProject.ext.androidx.espresso_core)
+    api(rootProject.ext.dependencies.glide)
+    kapt(rootProject.ext.dependencies.glide_compiler)
+}
