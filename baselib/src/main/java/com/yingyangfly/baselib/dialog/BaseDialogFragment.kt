@@ -13,6 +13,7 @@ import androidx.fragment.app.DialogFragment
 import com.yingyangfly.baselib.databinding.FragmentDialogBaseBinding
 import com.yingyangfly.baselib.ext.getDbClass
 import com.yingyangfly.baselib.ext.initBar
+import com.yingyangfly.baselib.utils.ScreenUtil
 import com.yingyangfly.baselib.utils.ViewTool
 
 /**
@@ -22,7 +23,6 @@ import com.yingyangfly.baselib.utils.ViewTool
  * dialogFragment 内存泄露 参考： https://blog.csdn.net/qq_37492806/article/details/105999003
  */
 abstract class BaseDialogFragment<DB : ViewDataBinding> : DialogFragment(), View.OnTouchListener {
-
     // 基类布局
     lateinit var baseView: FragmentDialogBaseBinding
 
@@ -36,8 +36,7 @@ abstract class BaseDialogFragment<DB : ViewDataBinding> : DialogFragment(), View
         val dm = DisplayMetrics()
         activity?.windowManager?.defaultDisplay?.getMetrics(dm)
         dialog?.window?.setLayout(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT
+            (dm.widthPixels - ScreenUtil.dp2px(80f)), ViewGroup.LayoutParams.WRAP_CONTENT
         )
     }
 
@@ -48,15 +47,12 @@ abstract class BaseDialogFragment<DB : ViewDataBinding> : DialogFragment(), View
         isCancelable = true
     }
 
+
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        initBar(false)
         baseView = FragmentDialogBaseBinding.inflate(inflater)
-        ViewTool.inflateFragmentPixels(activity, baseView.llytDialog, 1194, 834)
         baseView.llytContentDialog.addView(subViewBinding.root)
         initViews()
         initListener()
@@ -68,11 +64,12 @@ abstract class BaseDialogFragment<DB : ViewDataBinding> : DialogFragment(), View
         this.showsDialog = false
         super.onActivityCreated(savedInstanceState)
         showsDialog = isShow
+
         view?.let {
             if (view?.parent != null) {
-//                throw  IllegalAccessException("DialogFragment can not be attached to a container view")
+                throw IllegalAccessException("DialogFragment can not be attached to a container view")
             }
-            dialog?.setContentView(it!!)
+            dialog?.setContentView(view!!)
         }
 
         activity?.let {
