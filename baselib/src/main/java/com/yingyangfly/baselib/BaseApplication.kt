@@ -13,6 +13,7 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.tencent.bugly.crashreport.CrashReport
 import com.yingyangfly.baselib.config.AccountConfig
 import com.yingyangfly.baselib.utils.LogUtil
+import com.yingyangfly.baselib.utils.X5InitUtils
 import java.lang.reflect.Field
 import java.lang.reflect.Method
 
@@ -85,6 +86,8 @@ open class BaseApplication : Application() {
     }
 
     open fun initViews() {
+        //初始化X5浏览器
+        X5InitUtils.init(this)
     }
 
     private fun initRouter() {

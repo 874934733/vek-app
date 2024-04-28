@@ -1,9 +1,9 @@
 package com.yingyang.home
 
 import android.text.TextUtils
-import android.util.Log
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ClipboardUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.yingyangfly.baselib.base.BaseActivity
 import com.yingyangfly.baselib.bean.def.PermissionList
 import com.yingyangfly.baselib.ext.check
@@ -11,6 +11,7 @@ import com.yingyangfly.baselib.ext.initTitle
 import com.yingyangfly.baselib.ext.setOnSingleClickListener
 import com.yingyangfly.baselib.router.RouterUrlCommon
 import com.yingyangfly.baselib.utils.CommonUtils
+import com.yingyangfly.baselib.webView.WebViewActivity
 import com.yingyangfly.home.databinding.ActivityHomeBinding
 
 /**
@@ -27,6 +28,19 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     override fun initListener() {
         binding.btnAudioExtraction.setOnSingleClickListener {
             PermissionList.cameraPermission.check(this) {
+                var url: String = binding.etUrl.getText().toString()
+                if (TextUtils.isEmpty(url)) {
+                    ToastUtils.showShort("请输入链接！")
+                    return@check
+                }
+
+                url = CommonUtils.extractUrl(url)
+                if (TextUtils.isEmpty(url)) {
+                    ToastUtils.showShort("没有获取到链接!")
+                    return@check
+                }
+                WebViewActivity.open(mContext, url)
+
 
             }
         }

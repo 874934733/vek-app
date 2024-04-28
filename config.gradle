@@ -87,6 +87,9 @@ ext {
             "utilcode"                 : 'com.blankj:utilcode:1.30.7',
             "rxbus"                    : 'lib.gorden.rxbus2:rxbus:2.0.1',
             // 动态申请权限 https://github.com/getActivity/XXPermissions
-            "xxPermission"             : "com.github.getActivity:XXPermissions:18.3"
+            "xxPermission"             : "com.github.getActivity:XXPermissions:18.3",
+            "backgroundLibrary"        : "com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.5",
+            "tbssdk"                   : "com.tencent.tbs:tbssdk:44286",
+            "fastjson"                 : "com.alibaba:fastjson:1.2.76"
     ]
 }

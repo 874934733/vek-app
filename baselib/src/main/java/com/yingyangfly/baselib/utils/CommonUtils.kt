@@ -16,7 +16,7 @@ object CommonUtils {
 
     // 两次点击按钮之间的点击间隔不能少于1000毫秒
     private const val SHORT_MIN_CLICK_DELAY_TIME = 1000
-    private const val MIN_CLICK_DELAY_TIME = 1500
+    private const val MIN_CLICK_DELAY_TIME = 2000
     private var lastClickTime: Long = 0
 
     val isFastClick: Boolean
