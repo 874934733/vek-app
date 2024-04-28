@@ -1,4 +1,4 @@
-package com.yingyang.extractaudiovideo.widget;
+package com.yingyang.widget;
 
 import android.content.Context;
 import android.view.View;

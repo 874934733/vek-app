@@ -1,4 +1,4 @@
-package com.yingyangfly.baselib.widget;
+package com.yingyang.widget;
 
 import android.content.Context;
 import android.graphics.Rect;
@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 
 import androidx.appcompat.widget.AppCompatEditText;
 
-import com.yingyangfly.baselib.R;
+import com.yingyangfly.home.R;
 
 public class ClearEditText extends AppCompatEditText {
 
@@ -70,7 +70,6 @@ public class ClearEditText extends AppCompatEditText {
 
 
     public void setClearIconVisible(boolean visible) {
-        setCompoundDrawablesWithIntrinsicBounds(getCompoundDrawables()[DRAWABLE_LEFT], getCompoundDrawables()[DRAWABLE_TOP]
-                , visible ? mClearDrawable : null, getCompoundDrawables()[DRAWABLE_BOTTOM]);
+        setCompoundDrawablesWithIntrinsicBounds(getCompoundDrawables()[DRAWABLE_LEFT], getCompoundDrawables()[DRAWABLE_TOP], visible ? mClearDrawable : null, getCompoundDrawables()[DRAWABLE_BOTTOM]);
     }
 }

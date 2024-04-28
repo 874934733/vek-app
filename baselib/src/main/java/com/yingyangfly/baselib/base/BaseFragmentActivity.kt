@@ -27,7 +27,6 @@ import com.yingyangfly.baselib.ext.getDbClass
 import com.yingyangfly.baselib.ext.initBar
 import com.yingyangfly.baselib.utils.ActivityManagers
 import com.yingyangfly.baselib.utils.ResUtil
-import com.yingyangfly.baselib.utils.ViewTool
 import gorden.rxbus2.RxBus
 
 
@@ -69,7 +68,7 @@ abstract class BaseFragmentActivity<DB : ViewDataBinding> : FragmentActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         RxBus.get().register(this)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE // 竖屏
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT // 竖屏
         mContext = this
         initWindow()
         // 默认不全屏，底部导航栏透明
@@ -82,7 +81,7 @@ abstract class BaseFragmentActivity<DB : ViewDataBinding> : FragmentActivity(),
         )
         binding.root.layoutParams = params
         bindingBase.llytContent.addView(binding.root)
-        setContentView(ViewTool.inflateLayoutPixels(this, bindingBase.root, 1194, 834))
+        setContentView(bindingBase.root)
         initMVVM()
         initViews()
         initListener()

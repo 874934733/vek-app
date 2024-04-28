@@ -1,4 +1,4 @@
-package com.yingyang.extractaudiovideo.widget;
+package com.yingyang.widget;
 
 /**
  * Created by Lankun on 2019/05/24

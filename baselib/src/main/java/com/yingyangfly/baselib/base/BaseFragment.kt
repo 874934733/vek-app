@@ -19,7 +19,6 @@ import com.yingyangfly.baselib.dialog.LoadingDialog
 import com.yingyangfly.baselib.ext.getDbClass
 import com.yingyangfly.baselib.ext.initBar
 import com.yingyangfly.baselib.utils.ResUtil
-import com.yingyangfly.baselib.utils.ViewTool
 import gorden.rxbus2.RxBus
 
 /**
@@ -64,7 +63,7 @@ abstract class BaseFragment<DB : ViewDataBinding> : Fragment(), OnRefreshLoadMor
             LinearLayout.LayoutParams.MATCH_PARENT, 1.0f
         )
         binding.root.layoutParams = params
-        bindingBase.llytContent.addView(ViewTool.inflateFragmentPixels(activity, binding.root,1194, 834))
+        bindingBase.llytContent.addView(binding.root)
         initMVVM()
         initViews()
         initListener()
