@@ -76,13 +76,13 @@ abstract class BaseActivity<DB : ViewDataBinding> : AppCompatActivity(), OnRefre
         ActivityManagers.instance.addActivity(this)
         initSmartRefresh()
         val params: ViewGroup.LayoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 1.0f
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.MATCH_PARENT, 1.0f
         )
         binding.root.layoutParams = params
         bindingBase.llytContent.addView(binding.root)
         setContentView(bindingBase.root)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT // 竖屏
-
         initMVVM()
         initViews()
         initListener()
