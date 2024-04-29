@@ -24,8 +24,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), TabLayout.OnTabSelecte
     private var tabImgs = mutableListOf(
         R.drawable.tab1_selector,
         R.drawable.tab2_selector,
-        R.drawable.tab4_selector,
         R.drawable.tab3_selector,
+        R.drawable.tab4_selector,
     )
     private val homeFragment by lazy { HomeFragment() }//首页
     private val changeVoiceFragment by lazy { RouterUtil.getFragment(RouterUrlCommon.changeVoice) }//变声
