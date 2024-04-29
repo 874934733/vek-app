@@ -1,3 +1,6 @@
-<resources>
-    <string name="app_name">home</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="tab1" tools:ignore="ResourceName">首页</string>
+    <string name="tab2" tools:ignore="ResourceName">变声</string>
+    <string name="tab3" tools:ignore="ResourceName">作品</string>
+    <string name="tab4" tools:ignore="ResourceName">我的</string>
 </resources>
