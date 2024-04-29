@@ -9,51 +9,36 @@
         android:layout_height="match_parent"
         android:background="@android:color/white">
 
-        <com.yingyang.widget.ClearEditText
-            android:id="@+id/etUrl"
+        <FrameLayout
+            android:id="@+id/home_content"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:drawableEnd="@mipmap/delete"
-            android:gravity="center_vertical"
-            android:hint="请输入分享视频地址"
-            android:singleLine="true"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="HardcodedText" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/view_50"
+            tools:ignore="MissingConstraints" />
 
-        <Button
-            android:id="@+id/btnVideoExtraction"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="10dp"
-            android:text="提取视频"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/btnAudioExtraction"
-            app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etUrl" />
+        <FrameLayout
+            android:id="@+id/flyt"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/view_50"
+            android:background="@color/tab_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
 
-        <Button
-            android:id="@+id/btnAudioExtraction"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="10dp"
-            android:text="提取音频"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintStart_toEndOf="@+id/btnVideoExtraction"
-            app:layout_constraintTop_toBottomOf="@+id/etUrl" />
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tablayoutHome"
+                style="@style/HomeCustomTab"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/view_50"
+                android:layout_marginBottom="0dp"
+                app:tabIndicatorHeight="0dp"
+                app:tabRippleColor="@android:color/transparent" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_F5F5F5" />
+        </FrameLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
