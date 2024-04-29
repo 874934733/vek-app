@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.launcher.ARouter
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
@@ -262,5 +263,23 @@ abstract class BaseActivity<DB : ViewDataBinding> : AppCompatActivity(), OnRefre
             res.updateConfiguration(newConfig, res.displayMetrics)
         }
         return res
+    }
+
+    var showFragment: Fragment? = null
+    fun showFragment(viewId: Int, f: Fragment) {
+        try {
+            val ft = supportFragmentManager.beginTransaction()
+            if (showFragment != null) ft.hide(showFragment!!)
+            if (f.isAdded) {
+                ft.show(f)
+            } else {
+                ft.add(viewId, f)
+            }
+            showFragment = f
+            ft.commitAllowingStateLoss()
+            supportFragmentManager.executePendingTransactions()// 立即执行
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }

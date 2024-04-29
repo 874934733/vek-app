@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 
 import androidx.appcompat.widget.AppCompatEditText;
 
-import com.yingyangfly.home.R;
+import com.yingyang.home.R;
 
 public class ClearEditText extends AppCompatEditText {
 

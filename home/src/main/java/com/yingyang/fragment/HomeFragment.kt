@@ -1,7 +1,7 @@
 package com.yingyang.fragment
 
+import com.yingyang.home.databinding.FragmentHomeBinding
 import com.yingyangfly.baselib.base.BaseFragment
-import com.yingyangfly.home.databinding.FragmentHomeBinding
 
 /**
  * 首页fragment

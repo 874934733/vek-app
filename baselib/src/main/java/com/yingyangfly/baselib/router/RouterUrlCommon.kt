@@ -8,7 +8,7 @@ object RouterUrlCommon {
     /**
      * 登录
      */
-    const val login = "/login/login"
+    const val login = "/login/page"
 
     /**
      * 新版首页
@@ -18,15 +18,15 @@ object RouterUrlCommon {
     /**
      * 作品
      */
-    const val works = "/home/works"
+    const val works = "/works/page"
 
     /**
      * 变声
      */
-    const val changeVoice = "/home/changeVoice"
+    const val changeVoice = "/changeVoice/page"
 
     /**
      * 我的
      */
-    const val main = "/home/main"
+    const val main = "/main/page"
 }

@@ -10,7 +10,7 @@ android {
         }
     }
     // 统一资源前缀，规范资源引用
-    resourcePrefix "mmse_"
+    resourcePrefix "main_"
 }
 
 dependencies {
@@ -20,4 +20,7 @@ dependencies {
     implementation(rootProject.ext.androidx.appcompat)
     implementation(rootProject.ext.androidx.material)
     implementation(rootProject.ext.androidx.constraintlayout)
+    // ARtouter
+    implementation(rootProject.ext.dependencies.arouter_api)
+    kapt(rootProject.ext.dependencies.arouter_compiler)
 }

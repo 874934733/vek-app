@@ -91,6 +91,18 @@ android {
         dataBinding true
     }
 
+    dexOptions {
+        javaMaxHeapSize "6g" //此处可根据电脑本身配置 数值越大 当然越快 //最大堆内存注意内存是自己电脑内存大小配置
+        preDexLibraries = false
+        //线程数
+        threadCount = 6
+        //使用增量模式构建
+        incremental true
+        //是否支持大工程模式
+        jumboMode = true
+        //预编译
+        preDexLibraries = true
+    }
 }
 
 dependencies {
