@@ -11,42 +11,22 @@ object RouterUrlCommon {
     const val login = "/login/login"
 
     /**
-     * setting设置页面
-     */
-    const val setting = "/setting/my_setting"
-
-    /**
-     * 个人中心
-     */
-    const val personalCenter = "/personalCenter/personalCenter"
-
-    /**
      * 新版首页
      */
-    const val home = "/home/home"
+    const val home = "/home/page"
 
     /**
-     * 帮助中心
+     * 作品
      */
-    const val help = "/help/center"
+    const val works = "/home/works"
 
     /**
-     * 用户协议页面
+     * 变声
      */
-    const val agreement = "/agreement/agreement"
+    const val changeVoice = "/home/changeVoice"
 
     /**
-     * 租赁协议
+     * 我的
      */
-    const val leaseAgreement = "/lease/agreement"
-
-    /**
-     * 隐私协议
-     */
-    const val privacyAgreement = "/privacy/agreement"
-
-    /**
-     * 用户服务协议
-     */
-    const val userAgreement = "/user/agreement"
+    const val main = "/home/main"
 }
