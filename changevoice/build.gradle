@@ -1,0 +1,23 @@
+apply from: "../module.build.gradle"
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    defaultConfig {
+        // 如果是独立模块，则使用当前组件的包名
+        if (singleModule.toBoolean()) {
+            applicationId "com.yingyang.changevoice"
+        }
+    }
+    // 统一资源前缀，规范资源引用
+    resourcePrefix "mmse_"
+}
+
+dependencies {
+    implementation project(path: ':baselib')
+    implementation(rootProject.ext.androidx.kotlin_lib)
+    implementation(rootProject.ext.androidx.kotlin_core)
+    implementation(rootProject.ext.androidx.appcompat)
+    implementation(rootProject.ext.androidx.material)
+    implementation(rootProject.ext.androidx.constraintlayout)
+}
