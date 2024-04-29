@@ -1,6 +1,9 @@
 package com.yingyang.home
 
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentStatePagerAdapter
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.tabs.TabLayout
 import com.yingyang.fragment.HomeFragment
@@ -14,7 +17,7 @@ import com.yingyangfly.baselib.utils.TabUtils
  * app首页
  */
 @Route(path = RouterUrlCommon.home)
-class HomeActivity : BaseActivity<ActivityHomeBinding>() {
+class HomeActivity : BaseActivity<ActivityHomeBinding>(), TabLayout.OnTabSelectedListener {
 
     private var tabTitles =
         mutableListOf(R.string.tab1, R.string.tab2, R.string.tab3, R.string.tab4)
@@ -28,6 +31,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     private val changeVoiceFragment by lazy { RouterUtil.getFragment(RouterUrlCommon.changeVoice) }//变声
     private val worksFragment by lazy { RouterUtil.getFragment(RouterUrlCommon.works) }//作品
     private val mainFragment by lazy { RouterUtil.getFragment(RouterUrlCommon.main) }//我的
+    private lateinit var homePagerAdapter: HomePagerAdapter
 
     private var tabFragments = mutableListOf<Fragment>()
 
@@ -41,31 +45,52 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         tabFragments.add(worksFragment)
         tabFragments.add(mainFragment)
 
-        TabUtils.setTabsImg(binding.tablayoutHome, layoutInflater, tabTitles, tabImgs)
-
-        showFragment(R.id.home_content, tabFragments[0])
-        binding.tablayoutHome.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-            }
-
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                val posi = tab?.position!!
-                showFragment(R.id.home_content, tabFragments[posi])
-                tabFragments.forEachIndexed { index, fragment ->
-                    fragment.onHiddenChanged(posi != index)
-                }
-            }
-        })
+        homePagerAdapter = HomePagerAdapter(supportFragmentManager)
+        binding.viewpager.adapter = homePagerAdapter
+        TabUtils.setTabsImg(binding.tabLayout, layoutInflater, tabTitles, tabImgs)
+        homePagerAdapter.notifyDataSetChanged()
     }
 
     override fun initListener() {
-
+        binding.apply {
+            viewpager.setScroll(false)
+            viewpager.offscreenPageLimit = 4
+            tabLayout.addOnTabSelectedListener(this@HomeActivity)
+        }
     }
 
     override fun initData() {
+
+    }
+
+    inner class HomePagerAdapter(fm: FragmentManager) :
+        FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+
+        override fun getItem(position: Int): Fragment {
+            return tabFragments[position]!!
+        }
+
+        override fun getCount(): Int {
+            return tabFragments.size
+        }
+
+        override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
+        }
+    }
+
+    override fun onTabSelected(p0: TabLayout.Tab?) {
+        //Fragment切换
+        tabFragments.forEachIndexed { index, fragment ->
+            fragment.onHiddenChanged(binding.tabLayout.getTabAt(index)?.isSelected == true)
+            binding.viewpager.currentItem = p0!!.position
+        }
+    }
+
+    override fun onTabUnselected(p0: TabLayout.Tab?) {
+
+    }
+
+    override fun onTabReselected(p0: TabLayout.Tab?) {
 
     }
 }
