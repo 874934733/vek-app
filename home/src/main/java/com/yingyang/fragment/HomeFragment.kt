@@ -1,12 +1,12 @@
-package com.yingyang.works
+package com.yingyang.fragment
 
-import com.yingyang.works.databinding.FragmentWorksBinding
 import com.yingyangfly.baselib.base.BaseFragment
+import com.yingyangfly.home.databinding.FragmentHomeBinding
 
 /**
- * 作品fragment
+ * 首页fragment
  */
-class WorksFragment : BaseFragment<FragmentWorksBinding>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun initViews() {
 
     }
