@@ -131,8 +131,8 @@ abstract class BaseActivity<DB : ViewDataBinding> : AppCompatActivity(), OnRefre
         bindingBase.smartRefreshLayout.setEnableOverScrollDrag(false)
         bindingBase.smartRefreshLayout.setOnRefreshLoadMoreListener(this)
         //设置刷新头和加载头的背景色
-        bindingBase.smartRefreshLayout.refreshHeader?.view?.setBackgroundColor(ResUtil.getColor(R.color.colorBorder))
-        bindingBase.smartRefreshLayout.refreshFooter?.view?.setBackgroundColor(ResUtil.getColor(R.color.colorBorder))
+        bindingBase.smartRefreshLayout.refreshHeader?.view?.setBackgroundColor(ResUtil.getColor(R.color.color_F5F5F5))
+        bindingBase.smartRefreshLayout.refreshFooter?.view?.setBackgroundColor(ResUtil.getColor(R.color.color_F5F5F5))
     }
 
     /**
