@@ -1,7 +1,13 @@
 package com.yingyang.fragment
 
 import android.Manifest
+import android.util.Log
 import com.alibaba.android.arouter.launcher.ARouter
+import com.coder.ffmpeg.annotation.MediaAttribute
+import com.coder.ffmpeg.call.CommonCallBack
+import com.coder.ffmpeg.jni.FFmpegCommand
+import com.coder.ffmpeg.utils.FFmpegUtils
+import com.coder.ffmpegtest.utils.FileUtils
 import com.hjq.permissions.XXPermissions
 import com.yingyang.home.databinding.FragmentHomeBinding
 import com.yingyangfly.baselib.base.BaseFragment
@@ -11,6 +17,9 @@ import com.yingyangfly.baselib.ext.initCenterTitle
 import com.yingyangfly.baselib.ext.setOnSingleClickListener
 import com.yingyangfly.baselib.ext.setTitleDividerVisible
 import com.yingyangfly.baselib.router.RouterUrlCommon
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.io.File
 import java.util.Arrays
 
 /**
@@ -25,6 +34,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         Manifest.permission.RECORD_AUDIO
     ).toTypedArray()
 
+    private var mAudioPath: String? = null
+    private var mVideoPath: String? = null
+    private var targetPath: String? = null
+    private var mAudioBgPath: String? = null
+    private var mImagePath: String? = null
+
     override fun initViews() {
         initCenterTitle("音视频提取")
         setTitleDividerVisible(true)
@@ -38,6 +53,35 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     ARouter.getInstance().build(RouterUrlCommon.record).navigation()
                 } else {
                     getAudioPermission()
+                }
+            }
+
+            //音频拼接
+            btnAudioSplicing.setOnSingleClickListener {
+                if (audioPermissionBool()) {
+                    Log.e(
+                        "wpp",
+                        "--------------------------------------------66666666666666666666666666666666"
+                    )
+                    FileUtils.copy2Memory(mContext, "test.mp3")
+                    FileUtils.copy2Memory(mContext, "test.mp4")
+                    FileUtils.copy2Memory(mContext, "testbg.mp3")
+                    FileUtils.copy2Memory(mContext, "water.png")
+                    mAudioPath = File(requireActivity().externalCacheDir, "test.mp3").absolutePath
+                    mVideoPath = File(requireActivity().externalCacheDir, "test.mp4").absolutePath
+                    mAudioBgPath =
+                        File(requireActivity().externalCacheDir, "testbg.mp3").absolutePath
+                    mImagePath = File(requireActivity().externalCacheDir, "water.png").absolutePath
+
+                    targetPath =
+                        requireActivity().externalCacheDir.toString() + File.separator + "target8.mp3"
+                    GlobalScope.launch {
+                        FFmpegCommand.runCmd(
+                            FFmpegUtils.concatAudio(
+                                mAudioPath, mAudioPath, targetPath
+                            ), callback("音频拼接完成", targetPath)
+                        )
+                    }
                 }
             }
         }
@@ -62,5 +106,39 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
      */
     private fun audioPermissionBool(): Boolean {
         return XXPermissions.isGranted(mContext, audioPermission)
+    }
+
+
+    private fun callback(msg: String, targetPath: String?): CommonCallBack? {
+        return object : CommonCallBack() {
+            override fun onStart() {
+            }
+
+            override fun onComplete() {
+                requireActivity().runOnUiThread {
+                    dimissLoading()
+                }
+            }
+
+            override fun onCancel() {
+                requireActivity().runOnUiThread {
+                    dimissLoading()
+                }
+            }
+
+            override fun onProgress(progress: Int, pts: Long) {
+                var duration: Int? = FFmpegCommand.getMediaInfo(mAudioPath, MediaAttribute.DURATION)
+                var progressN = pts / duration!!
+                requireActivity().runOnUiThread {
+                    showLoading()
+                }
+            }
+
+            override fun onError(errorCode: Int, errorMsg: String?) {
+                requireActivity().runOnUiThread {
+                    dimissLoading()
+                }
+            }
+        }
     }
 }

@@ -11,6 +11,7 @@ import com.yingyangfly.baselib.router.RouterUrlCommon
  */
 @Route(path = RouterUrlCommon.record)
 class RecordActivity : BaseActivity<ActivityRecordBinding>() {
+
     override fun initViews() {
         title = "录音"
         setTitleDividerVisible(true)
