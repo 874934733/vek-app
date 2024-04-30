@@ -157,6 +157,13 @@ fun <DB> BaseActivity<*>.getDbClass(t: Any): DB {
 }
 
 /**
+ * 设置标题栏底部分割线颜色
+ */
+fun BaseActivity<*>.setTitleDividerVisible(bool: Boolean) {
+    bindingBase.layoutTitle.viewDivider.visibility = if (bool) View.VISIBLE else View.GONE
+}
+
+/**
  * 标题栏初始化
  */
 fun BaseActivity<*>.initTitle(value: String, showLeftButton: Boolean = true) {

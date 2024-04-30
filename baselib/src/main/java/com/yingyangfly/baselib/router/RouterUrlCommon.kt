@@ -29,4 +29,9 @@ object RouterUrlCommon {
      * 我的
      */
     const val main = "/main/page"
+
+    /**
+     * 录音
+     */
+    const val record = "/record/page"
 }

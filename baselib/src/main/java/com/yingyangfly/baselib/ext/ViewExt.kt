@@ -7,6 +7,7 @@ import android.view.animation.ScaleAnimation
 import android.webkit.WebView
 import android.widget.EditText
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.XXPermissions
@@ -123,6 +124,32 @@ fun Array<String>.check(act: FragmentActivity, func: () -> Unit) = this.apply {
     })
 }
 
+fun Array<String>.fragmentCheck(fragment: Fragment, func: () -> Unit) = this.apply {
+    XXPermissions.with(fragment).permission(this).request(object : OnPermissionCallback {
+        override fun onDenied(permissions: MutableList<String>, doNotAskAgain: Boolean) {
+            if (doNotAskAgain) {
+                getPermissions()
+            }
+        }
+
+        fun getPermissions() {
+            TipDialogFragment.TipDialogBuilder()
+                .content("当前应用缺少必要权限,请点击“设置”-“权限”-“权限管理”打开所需权限", 0)
+                .leftBtnText("退出").rightBtnText("设置").leftClick({ null }, true).rightClick({
+                    XXPermissions.startPermissionActivity(fragment)
+                    null
+                }, true).show(fragment.childFragmentManager)
+        }
+
+        override fun onGranted(permissions: MutableList<String>, allGranted: Boolean) {
+            if (allGranted) { // 全部获取权限成功
+                func()
+            } else { // 部分获取权限成功
+                getPermissions()
+            }
+        }
+    })
+}
 
 /**
  * 对图片进行重置大小，宽度就是手机屏幕宽度，高度根据宽度比便自动缩放

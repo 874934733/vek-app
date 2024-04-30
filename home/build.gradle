@@ -34,4 +34,5 @@ dependencies {
     kapt(rootProject.ext.dependencies.arouter_compiler)
     implementation(rootProject.ext.dependencies.FFmpegAndroid)
     implementation(rootProject.ext.dependencies.jcodec_android)
+    implementation(rootProject.ext.dependencies.MultiTypeFilePicker)
 }

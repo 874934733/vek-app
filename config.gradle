@@ -93,6 +93,7 @@ ext {
             "fastjson"                 : "com.alibaba:fastjson:1.2.76",
             //FFmpeg Library
             "FFmpegAndroid"            : "com.writingminds:FFmpegAndroid:0.3.2",
-            "jcodec_android"           : "org.jcodec:jcodec-android:0.1.9"
+            "jcodec_android"           : "org.jcodec:jcodec-android:0.1.9",
+            "MultiTypeFilePicker"      : "com.vincent.filepicker:MultiTypeFilePicker:1.0.4"
     ]
 }
