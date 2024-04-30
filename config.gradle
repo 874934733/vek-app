@@ -90,6 +90,9 @@ ext {
             "xxPermission"             : "com.github.getActivity:XXPermissions:18.3",
             "backgroundLibrary"        : "com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.5",
             "tbssdk"                   : "com.tencent.tbs:tbssdk:44286",
-            "fastjson"                 : "com.alibaba:fastjson:1.2.76"
+            "fastjson"                 : "com.alibaba:fastjson:1.2.76",
+            //FFmpeg Library
+            "FFmpegAndroid"            : "com.writingminds:FFmpegAndroid:0.3.2",
+            "jcodec_android"           : "org.jcodec:jcodec-android:0.1.9"
     ]
 }
