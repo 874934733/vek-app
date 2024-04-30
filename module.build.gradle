@@ -22,7 +22,6 @@ def singleRun = singleModule.toBoolean()
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
         // 如果是独立模块，则使用当前组件的包名

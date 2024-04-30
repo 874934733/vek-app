@@ -9,7 +9,6 @@ ext {
     //android开发版本配置
     android = [
             compileSdkVersion: 30,
-            buildToolsVersion: "30.0.0",
             applicationId    : "com.yingyang.extractaudiovideo",
             minSdkVersion    : 19,
             targetSdkVersion : 30,

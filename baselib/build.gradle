@@ -72,6 +72,7 @@ android {
 
 dependencies {
 
+    api project(path: ':ffmpeg')
     api fileTree(exclude: '*.bak', dir: 'libs')
     implementation(rootProject.ext.androidx.kotlin_lib)
     implementation(rootProject.ext.androidx.kotlin_core)

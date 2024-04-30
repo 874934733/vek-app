@@ -42,7 +42,7 @@ android {
         multiDexEnabled true
         // 只保留指定和默认的资源
         resConfigs "zh"//去掉无用的国际语言
-        ndkVersion '22.1.7171670'
+        ndkVersion '20.0.5594570'
         ndk {
             //选择要添加的对应 cpu 类型的 .so 库。
             abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
