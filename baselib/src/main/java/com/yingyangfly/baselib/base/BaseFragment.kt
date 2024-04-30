@@ -18,6 +18,7 @@ import com.yingyangfly.baselib.databinding.ActivityBaseBinding
 import com.yingyangfly.baselib.dialog.LoadingDialog
 import com.yingyangfly.baselib.ext.getDbClass
 import com.yingyangfly.baselib.ext.initBar
+import com.yingyangfly.baselib.ext.initTitle
 import com.yingyangfly.baselib.utils.ResUtil
 import gorden.rxbus2.RxBus
 
@@ -38,6 +39,14 @@ abstract class BaseFragment<DB : ViewDataBinding> : Fragment(), OnRefreshLoadMor
     val bindingBase: ActivityBaseBinding by lazy {
         ActivityBaseBinding.inflate(layoutInflater)
     }
+
+    /**
+     * 标题
+     */
+    var title = ""
+        set(value) {
+            initTitle(value)
+        }
 
     lateinit var mContext: Context
 

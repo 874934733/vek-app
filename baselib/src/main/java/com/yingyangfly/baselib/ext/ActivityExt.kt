@@ -47,17 +47,6 @@ fun BaseDialogFragment<*>.initBar(full: Boolean) {
 /**
  * 沉浸式状态栏
  */
-fun BaseFragment<*>.initBar(full: Boolean) {
-    immersionBar {
-        hideBar(BarHide.FLAG_HIDE_NAVIGATION_BAR)
-        statusBarDarkFont(true)
-        navigationBarColor(R.color.transparent)
-    }
-}
-
-/**
- * 沉浸式状态栏
- */
 fun BaseFragmentActivity<*>.initBar(full: Boolean) {
     immersionBar {
         hideBar(BarHide.FLAG_HIDE_NAVIGATION_BAR)
