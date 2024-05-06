@@ -93,6 +93,9 @@ ext {
             //FFmpeg Library
             "FFmpegAndroid"            : "com.writingminds:FFmpegAndroid:0.3.2",
             "jcodec_android"           : "org.jcodec:jcodec-android:0.1.9",
-            "MultiTypeFilePicker"      : "com.vincent.filepicker:MultiTypeFilePicker:1.0.4"
+            "MultiTypeFilePicker"      : "com.vincent.filepicker:MultiTypeFilePicker:1.0.4",
+            "room_runtime"             : 'androidx.room:room-runtime:2.2.6',
+            "room_compiler"            : 'androidx.room:room-compiler:2.2.6',
+            "room_ktx"                 : 'androidx.room:room-ktx:2.2.6'
     ]
 }

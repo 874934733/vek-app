@@ -123,4 +123,7 @@ dependencies {
     api(rootProject.ext.dependencies.backgroundLibrary)
     api(rootProject.ext.dependencies.tbssdk)
     api(rootProject.ext.dependencies.fastjson)
+    api(rootProject.ext.dependencies.room_runtime)
+    kapt(rootProject.ext.dependencies.room_compiler)
+    api(rootProject.ext.dependencies.room_ktx)
 }
