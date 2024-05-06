@@ -1,6 +1,5 @@
 package com.yingyang.works.fragment
 
-import android.util.Log
 import com.yingyang.works.adapter.WorkAdapter
 import com.yingyang.works.databinding.FragmentWorkListBinding
 import com.yingyangfly.baselib.base.BaseFragment
