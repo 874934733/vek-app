@@ -39,4 +39,9 @@ object RouterUrlCommon {
      * 提取视频
      */
     const val extractingVideos = "/extracting/videos"
+
+    /**
+     * 腾讯x5 webview
+     */
+    const val WEB_VIEW_TENCENT_WEBVIEW = "/tencent/webview"
 }

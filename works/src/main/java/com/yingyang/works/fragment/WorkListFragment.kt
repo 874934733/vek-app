@@ -1,11 +1,12 @@
 package com.yingyang.works.fragment
 
+import com.alibaba.android.arouter.launcher.ARouter
 import com.yingyang.works.adapter.WorkAdapter
 import com.yingyang.works.databinding.FragmentWorkListBinding
 import com.yingyangfly.baselib.base.BaseFragment
 import com.yingyangfly.baselib.dialog.TipDialogFragment
 import com.yingyangfly.baselib.room.VideoBean
-import com.yingyangfly.baselib.utils.ToastUtil
+import com.yingyangfly.baselib.router.RouterUrlCommon
 
 /**
  * 作品列表
@@ -30,7 +31,8 @@ class WorkListFragment : BaseFragment<FragmentWorkListBinding>() {
         }
 
         adapter.onClickListener = {
-            ToastUtil.show(mContext, "播放视频")
+            ARouter.getInstance().build(RouterUrlCommon.WEB_VIEW_TENCENT_WEBVIEW)
+                .withString("url", it.url).navigation()
         }
     }
 

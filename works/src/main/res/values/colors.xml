@@ -2,4 +2,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <color name="color_D9000000" tools:ignore="ResourceName">#D9000000</color>
     <color name="color_ff6868" tools:ignore="ResourceName">#ff6868</color>
+    <color name="transparent" tools:ignore="ResourceName">#ffffffff</color>
 </resources>
