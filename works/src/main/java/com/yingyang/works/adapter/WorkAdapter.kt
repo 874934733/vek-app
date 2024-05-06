@@ -14,6 +14,9 @@ class WorkAdapter(override val layoutId: Int = R.layout.item_work) :
 
     var onDeleteClickListener: ((bean: VideoBean) -> Unit)? = null
 
+
+    var onClickListener: ((bean: VideoBean) -> Unit)? = null
+
     override fun onBindViewHolder(binding: ItemWorkBinding, item: VideoBean, position: Int) {
         binding.data = item
         binding.tvName.text = if (item.name.isNullOrEmpty()) {
@@ -23,6 +26,10 @@ class WorkAdapter(override val layoutId: Int = R.layout.item_work) :
         }
         binding.tvDelete.setOnSingleClickListener {
             onDeleteClickListener?.invoke(item)
+        }
+
+        binding.workLayout.setOnSingleClickListener {
+            onClickListener?.invoke(item)
         }
     }
 }

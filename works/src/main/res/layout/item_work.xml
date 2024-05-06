@@ -12,6 +12,7 @@
     </data>
 
     <com.yingyang.works.widget.swipedelete.SwipeMenuLayout
+        android:id="@+id/workLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"

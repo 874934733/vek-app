@@ -5,6 +5,7 @@ import com.yingyang.works.databinding.FragmentWorkListBinding
 import com.yingyangfly.baselib.base.BaseFragment
 import com.yingyangfly.baselib.dialog.TipDialogFragment
 import com.yingyangfly.baselib.room.VideoBean
+import com.yingyangfly.baselib.utils.ToastUtil
 
 /**
  * 作品列表
@@ -26,6 +27,10 @@ class WorkListFragment : BaseFragment<FragmentWorkListBinding>() {
                     delectWork(it)
                     null
                 }, true).show(childFragmentManager)
+        }
+
+        adapter.onClickListener = {
+            ToastUtil.show(mContext, "播放视频")
         }
     }
 
