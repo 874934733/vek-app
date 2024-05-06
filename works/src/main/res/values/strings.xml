@@ -1,3 +1,4 @@
-<resources>
-
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="my_audio" tools:ignore="ResourceName">我的音频</string>
+    <string name="my_video" tools:ignore="ResourceName">我的视频</string>
 </resources>

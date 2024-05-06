@@ -23,7 +23,7 @@ public class VideoBean implements Serializable {
 
     private String name;//作品名称
 
-
+    private String type;//1音频 2视频
 
     public int getId() {
         return id;
@@ -75,5 +75,16 @@ public class VideoBean implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getType() {
+        if (TextUtils.isEmpty(type)) {
+            return "";
+        }
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

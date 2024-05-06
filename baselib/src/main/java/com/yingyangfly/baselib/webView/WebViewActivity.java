@@ -43,7 +43,6 @@ import com.yingyangfly.baselib.room.VideoDao;
 import com.yingyangfly.baselib.utils.DownloadUtils;
 import com.yingyangfly.baselib.utils.ToastUtil;
 
-
 /**
  * h5入口
  */
@@ -341,6 +340,7 @@ public class WebViewActivity extends AppCompatActivity {
                             videoBean.setDate(String.valueOf(System.currentTimeMillis()));
                             videoBean.setUrl(requestUrl);
                             videoBean.setShereUrl(url);
+                            videoBean.setType("2");
                             videoDao.insert(videoBean);
                             ToastUtil.Companion.show(mContext, "获取成功");
                         }

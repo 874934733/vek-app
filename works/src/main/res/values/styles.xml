@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="TabTop" parent="Widget.Design.TabLayout" tools:ignore="ResourceName">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="tabIndicatorColor">@color/color_1890FF</item>
+        <item name="tabTextColor">@color/color_D9000000</item>
+        <item name="tabSelectedTextColor">@color/color_1890FF</item>
+        <item name="tabBackground">@color/transparent</item>
+        <item name="tabIndicatorFullWidth">false</item>
+        <item name="tabIndicatorHeight">@dimen/view_2</item>
+        <item name="tabIndicator">@color/color_1890FF</item>
+        <item name="tabRippleColor">@android:color/transparent</item>
+        <item name="tabMode">fixed</item>
+    </style>
+
+
+</resources>

@@ -9,15 +9,14 @@ import androidx.room.Update
 @Dao
 interface VideoDao : BaseDao<VideoBean> {
 
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(element: VideoBean)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     override fun insertAll(list: MutableList<VideoBean>)
 
-    @Query("select * from Video")
-    fun getAllVideoBean(): MutableList<VideoBean>
+    @Query("select * from Video where type = :type")
+    fun getAllVideoBean(type: String): MutableList<VideoBean>
 
     @Query("select * from Video where id = :id")
     fun getVideoById(id: Int): VideoBean
