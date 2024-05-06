@@ -53,39 +53,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             btnVideoExtraction.setOnSingleClickListener {
                 ARouter.getInstance().build(RouterUrlCommon.extractingVideos).navigation()
             }
-            //音频录制
-            btnAudioRecording.setOnSingleClickListener {
-                if (audioPermissionBool()) {
-                    ARouter.getInstance().build(RouterUrlCommon.record).navigation()
-                } else {
-                    getAudioPermission()
-                }
-            }
-
-            //音频拼接
-            btnAudioSplicing.setOnSingleClickListener {
-                if (audioPermissionBool()) {
-                    FileUtils.copy2Memory(mContext, "test.mp3")
-                    FileUtils.copy2Memory(mContext, "test.mp4")
-                    FileUtils.copy2Memory(mContext, "testbg.mp3")
-                    FileUtils.copy2Memory(mContext, "water.png")
-                    mAudioPath = File(requireActivity().externalCacheDir, "test.mp3").absolutePath
-                    mVideoPath = File(requireActivity().externalCacheDir, "test.mp4").absolutePath
-                    mAudioBgPath =
-                        File(requireActivity().externalCacheDir, "testbg.mp3").absolutePath
-                    mImagePath = File(requireActivity().externalCacheDir, "water.png").absolutePath
-
-                    targetPath =
-                        requireActivity().externalCacheDir.toString() + File.separator + "target8.mp3"
-                    GlobalScope.launch {
-                        FFmpegCommand.runCmd(
-                            FFmpegUtils.concatAudio(
-                                mAudioPath, mAudioPath, targetPath
-                            ), callback("音频拼接完成", targetPath)
-                        )
-                    }
-                }
-            }
         }
     }
 
