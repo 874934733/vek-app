@@ -64,9 +64,6 @@ abstract class BaseDialogFragment<DB : ViewDataBinding> : DialogFragment(), View
         showsDialog = isShow
 
         view?.let {
-            if (view?.parent != null) {
-                throw IllegalAccessException("DialogFragment can not be attached to a container view")
-            }
             dialog?.setContentView(view!!)
         }
 

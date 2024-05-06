@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="ResourceName">
 
@@ -10,26 +11,45 @@
             type="com.yingyangfly.baselib.room.VideoBean" />
     </data>
 
-    <LinearLayout
+    <com.yingyang.works.widget.swipedelete.SwipeMenuLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:clickToClose="true"
+        app:show_mode="pull_out">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvName"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/view_45"
-            android:gravity="center_vertical"
-            android:paddingStart="@dimen/view_12"
-            android:paddingEnd="@dimen/view_12"
-            android:textColor="@color/base_text_85"
-            android:textSize="@dimen/txt_16"
-            tools:text="你好" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/view_1"
-            android:background="@color/color_E8E8E8" />
-    </LinearLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/view_45"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/view_12"
+                android:paddingEnd="@dimen/view_12"
+                android:textColor="@color/base_text_85"
+                android:textSize="@dimen/txt_16"
+                tools:text="你好" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/view_1"
+                android:background="@color/color_E8E8E8" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvDelete"
+            android:layout_width="@dimen/view_60"
+            android:layout_height="match_parent"
+            android:background="@color/color_ff6868"
+            android:gravity="center"
+            android:text="删除"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/txt_16" />
+
+    </com.yingyang.works.widget.swipedelete.SwipeMenuLayout>
 
 </layout>
