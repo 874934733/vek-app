@@ -1,15 +1,17 @@
 package com.yingyang.works.webview
 
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ktx.immersionBar
 import com.yingyang.works.R
+import com.yingyangfly.baselib.ext.setOnSingleClickListener
 import com.yingyangfly.baselib.router.RouterUrlCommon
+import com.yingyangfly.baselib.utils.DownloadUtils
 import com.yingyangfly.baselib.webview.base.RobustWebView
 import com.yingyangfly.baselib.webview.base.WebViewCacheHolder
 import com.yingyangfly.baselib.webview.base.WebViewListener
@@ -21,6 +23,10 @@ class TencentWebviewActivity : AppCompatActivity() {
 
     private val rootLayout by lazy {
         findViewById<ViewGroup>(R.id.rootLayout)
+    }
+
+    private val btnSave by lazy {
+        findViewById<AppCompatButton>(R.id.btnSave)
     }
 
     private lateinit var webView: RobustWebView
@@ -38,6 +44,10 @@ class TencentWebviewActivity : AppCompatActivity() {
         rootLayout.addView(webView)
         if (TextUtils.isEmpty(url).not()) {
             webView.loadUrl(url)
+        }
+
+        btnSave.setOnSingleClickListener {
+            runOnUiThread { DownloadUtils.downloadDialog(this, url, url) }
         }
     }
 
