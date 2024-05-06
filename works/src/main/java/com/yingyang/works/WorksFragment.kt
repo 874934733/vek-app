@@ -19,18 +19,6 @@ class WorksFragment : BaseFragment<FragmentWorksBinding>() {
 
     override fun initViews() {
         initCenterTitle("我的作品")
-        val videoBean = VideoBean()
-        videoBean.url = "https://v.douyin.com/i2kC1hba/"
-        videoBean.date = System.currentTimeMillis().toString()
-        videoBean.name = "课堂"
-        videoBean.url = "https://v.douyin.com/i2kC1hba/"
-        videoBeans.add(videoBean)
-        videoBeans.add(videoBean)
-        videoBeans.add(videoBean)
-        videoBeans.add(videoBean)
-        videoBeans.add(videoBean)
-        videoBeans.add(videoBean)
-        videoBeans.add(videoBean)
         adapter.setData(videoBeans)
         binding.rvWork.adapter = adapter
     }
@@ -45,13 +33,13 @@ class WorksFragment : BaseFragment<FragmentWorksBinding>() {
 
     override fun onResume() {
         super.onResume()
-//        if (videoDao != null) {
-//            val list = videoDao!!.getAllVideoBean()
-//            if (list.isNotEmpty()) {
-//                videoBeans.clear()
-//                videoBeans.addAll(list)
-//            }
-//        }
-//        adapter.setData(videoBeans)
+        if (videoDao != null) {
+            val list = videoDao!!.getAllVideoBean()
+            if (list.isNotEmpty()) {
+                videoBeans.clear()
+                videoBeans.addAll(list)
+            }
+        }
+        adapter.setData(videoBeans)
     }
 }
