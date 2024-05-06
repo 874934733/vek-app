@@ -65,10 +65,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             //音频拼接
             btnAudioSplicing.setOnSingleClickListener {
                 if (audioPermissionBool()) {
-                    Log.e(
-                        "wpp",
-                        "--------------------------------------------66666666666666666666666666666666"
-                    )
                     FileUtils.copy2Memory(mContext, "test.mp3")
                     FileUtils.copy2Memory(mContext, "test.mp4")
                     FileUtils.copy2Memory(mContext, "testbg.mp3")
