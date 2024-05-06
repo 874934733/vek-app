@@ -2,34 +2,46 @@ package com.yingyangfly.baselib.webView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alibaba.fastjson.JSONObject;
+import com.blankj.utilcode.constant.PermissionConstants;
 import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.BarUtils;
+import com.blankj.utilcode.util.FileUtils;
+import com.blankj.utilcode.util.PermissionUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.blankj.utilcode.util.UriUtils;
 import com.tencent.smtt.export.external.extension.proxy.ProxyWebChromeClientExtension;
 import com.tencent.smtt.export.external.interfaces.ConsoleMessage;
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient;
 import com.tencent.smtt.export.external.interfaces.WebResourceError;
 import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
 import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
+import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
@@ -43,6 +55,8 @@ import com.yingyangfly.baselib.room.VideoDao;
 import com.yingyangfly.baselib.utils.DownloadUtils;
 import com.yingyangfly.baselib.utils.ToastUtil;
 
+import java.io.File;
+
 /**
  * h5入口
  */
@@ -52,6 +66,13 @@ public class WebViewActivity extends AppCompatActivity {
     private static final String TAG = WebViewActivity.class.getSimpleName();
 
     private BridgeWebView webView;
+    private ProgressBar progressBar;
+    private RelativeLayout errorView;
+    private LinearLayout ivBack;
+    private LinearLayout ivRefresh;
+    private RelativeLayout rlTitle;
+
+    private String url;
 
     //错误页面处理
     private boolean isError = false;
@@ -60,16 +81,17 @@ public class WebViewActivity extends AppCompatActivity {
     //是否第一次
     private boolean isFirst;
 
+    private LoadingDialog loadingDialog;
+
+    private AppDataBase db;
+    private VideoDao videoDao;
+
     public Context mContext;
 
     private FrameLayout mLayout;    // 用来显示视频的布局
     private View mCustomView;    //用于全屏渲染视频的View
     private IX5WebChromeClient.CustomViewCallback mCustomViewCallback;
 
-    private LoadingDialog loadingDialog;
-
-    private AppDataBase db;
-    private VideoDao videoDao;
 
     public static void open(Context mContext, String url) {
         Intent intent = new Intent(mContext, WebViewActivity.class);
@@ -81,7 +103,7 @@ public class WebViewActivity extends AppCompatActivity {
 
     public static class MyHandler extends Handler {
         @Override
-        public void handleMessage(@NonNull Message msg) {
+        public void handleMessage(Message msg) {
             super.handleMessage(msg);
         }
     }
@@ -114,7 +136,7 @@ public class WebViewActivity extends AppCompatActivity {
 
         initView();
 
-        String url = getIntent().getStringExtra("url");
+        url = getIntent().getStringExtra("url");
         if (TextUtils.isEmpty(url)) {
             ToastUtils.showShort("请先初始化!");
             finish();
@@ -132,6 +154,32 @@ public class WebViewActivity extends AppCompatActivity {
 
     public void initView() {
         webView = findViewById(R.id.webView);
+        progressBar = findViewById(R.id.progressBar);
+        errorView = findViewById(R.id.error_page);
+        errorView.setOnClickListener(v -> webView.reload());
+
+        ivBack = findViewById(R.id.ll_left);
+        ivRefresh = findViewById(R.id.ll_right);
+        rlTitle = findViewById(R.id.rl_title);
+
+        ivBack.setOnClickListener(v -> {
+
+            String url = webView.getUrl();
+            //拦截首页的页面,以免返回到登录页面
+
+
+            if (webView.canGoBack()) {
+                webView.goBack();
+            } else {
+                //返回到无法返回提示
+                finish();
+            }
+        });
+
+        ivRefresh.setOnClickListener(v -> webView.reload());
+
+        hideErrorPage();
+
         mLayout = findViewById(R.id.fl_video);
     }
 
@@ -152,6 +200,9 @@ public class WebViewActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        String url = webView.getUrl();
+        //拦截首页的页面,以免返回到登录页面
+
         if (webView.canGoBack()) {
             webView.goBack();
             return;
@@ -162,7 +213,6 @@ public class WebViewActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         webView.removeAllViews();
         webView.destroy();
         //异常所以的信息
@@ -194,14 +244,18 @@ public class WebViewActivity extends AppCompatActivity {
         if (url.contains("douyin.com")) {
             webSettings.setUserAgentString("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0) Gecko/20100101 Firefox/91.0");
         }
+
+
         webView.loadUrl(url);
+
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
-                loadingDialog.show();
+                progressBar.setVisibility(View.VISIBLE);
+                progressBar.setProgress(newProgress);
                 if (newProgress >= 100) {
-                    loadingDialog.dismiss();
+                    progressBar.setVisibility(View.GONE);
                 }
             }
 
@@ -210,6 +264,7 @@ public class WebViewActivity extends AppCompatActivity {
                 super.onReceivedTitle(webView, title);
                 if (!TextUtils.isEmpty(title) && title.startsWith("500")) {
                     Log.i(TAG, "MainH5Activity_onReceivedTitle_标题:" + title);
+                    showErrorPage();
                     ToastUtils.showShort("服务器异常,请稍后再试,错误码:500");
                     errorTitle = title;
                 } else {
@@ -239,6 +294,7 @@ public class WebViewActivity extends AppCompatActivity {
                 mLayout.addView(mCustomView);
                 mLayout.setVisibility(View.VISIBLE);
                 mLayout.bringToFront();
+
                 //设置横屏
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
@@ -248,6 +304,7 @@ public class WebViewActivity extends AppCompatActivity {
             public void onHideCustomView() {
                 super.onHideCustomView();
                 Log.i(TAG, "onHideCustomView()");
+
                 if (mCustomView == null) {
                     return;
                 }
@@ -296,10 +353,14 @@ public class WebViewActivity extends AppCompatActivity {
             @Override
             public void onCustomPageFinished(WebView view, String url) {
                 super.onCustomPageFinished(view, url);
-                loadingDialog.dismiss();
+                progressBar.setVisibility(View.GONE);
                 if (isError || !TextUtils.isEmpty(errorTitle)) {
                     Log.i(TAG, "MainH5Activity_onCustomPageFinished_打开网页完成_错误:url:" + url);
+                    showErrorPage();
                 } else {
+                    handler.postDelayed(() -> {
+                        hideErrorPage();
+                    }, 200);
                     handler.postDelayed(() -> {
                         if (isFirst) {
                             getH5Version();
@@ -315,6 +376,10 @@ public class WebViewActivity extends AppCompatActivity {
                 super.onReceivedError(webView, webResourceRequest, webResourceError);
                 Log.i(TAG, "MainH5Activity_onReceivedError_打开网页错误:url:" + webView.getUrl() + ",errorCode:" + webResourceError.getErrorCode() + ",description:" + webResourceError.getDescription());
                 Log.i(TAG, "MainH5Activity_onReceivedError_打开网页错误:request_url:" + webResourceRequest.getUrl().toString() + ",errorCode:" + webResourceError.getErrorCode() + ",description:" + webResourceError.getDescription());
+                if (webResourceRequest.isForMainFrame()) {
+                    //标记上次打开错误页面 下次进入页面刷新一次
+                    showErrorPage();
+                }
             }
 
             @Override
@@ -323,6 +388,7 @@ public class WebViewActivity extends AppCompatActivity {
                 if (android.os.Build.VERSION.SDK_INT < 23 && url.startsWith("http")) {
                     //API 23 6.0 以下
                     Log.i(TAG, "MainH5Activity_onReceivedError_6.0以下_打开网页错误:errorCode:" + errorCode + ",description:" + description + ",url:" + url);
+                    showErrorPage();
                 }
             }
 
@@ -335,15 +401,22 @@ public class WebViewActivity extends AppCompatActivity {
                     String type = DownloadUtils.getContentType(requestUrl);
                     if (type.startsWith("video")) {
                         Log.i("TAG", "webResourceRequest_video:" + requestUrl);
-                        if (videoDao != null) {
-                            VideoBean videoBean = new VideoBean();
-                            videoBean.setDate(String.valueOf(System.currentTimeMillis()));
-                            videoBean.setUrl(requestUrl);
-                            videoBean.setShereUrl(url);
-                            videoBean.setType("2");
-                            videoDao.insert(videoBean);
-                            ToastUtil.Companion.show(mContext, "获取成功");
+                        String shortUrl = "";
+                        if (url.contains("douyin.com") || url.contains("ixigua.com")) {
+                            shortUrl = url;
                         }
+                        String finalShortUrl = shortUrl;
+                        runOnUiThread(() -> {
+                            if (videoDao != null) {
+                                VideoBean videoBean = new VideoBean();
+                                videoBean.setDate(String.valueOf(System.currentTimeMillis()));
+                                videoBean.setUrl(requestUrl);
+                                videoBean.setShereUrl(url);
+                                videoBean.setType("2");
+                                videoDao.insert(videoBean);
+                                ToastUtil.Companion.show(mContext, "获取成功");
+                            }
+                        });
                     }
                 }
                 return super.shouldInterceptRequest(webView, webResourceRequest);
@@ -365,6 +438,7 @@ public class WebViewActivity extends AppCompatActivity {
         webView.registerHandler("writeLocalStorage", (data, function) -> {
         });
 
+
         //h5获取原生版本号
         webView.registerHandler("getAppVersion", (data, function) -> {
             JSONObject jsonObject = new JSONObject();
@@ -380,7 +454,29 @@ public class WebViewActivity extends AppCompatActivity {
     public boolean interceptUrl(String url) {
         String urlSdk = "Inter";
         Log.i(TAG, "MainH5Activity_interceptUrl_url:" + url + ",KEY_INTERCEPT_URL_SDK:" + urlSdk);
-        return url.toLowerCase().startsWith(urlSdk);
+        if (url.toLowerCase().startsWith(urlSdk)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 显示错误
+     */
+    private void showErrorPage() {
+        isError = true;
+        webView.setVisibility(View.GONE);
+        errorView.setVisibility(View.VISIBLE);
+        rlTitle.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * 隐藏错误
+     */
+    private void hideErrorPage() {
+        webView.setVisibility(View.VISIBLE);
+        errorView.setVisibility(View.GONE);
+        rlTitle.setVisibility(View.GONE);
     }
 
     /**
@@ -402,15 +498,17 @@ public class WebViewActivity extends AppCompatActivity {
      * 横竖屏切换监听
      */
     @Override
-    public void onConfigurationChanged(@NonNull Configuration config) {
+    public void onConfigurationChanged(Configuration config) {
         super.onConfigurationChanged(config);
-        if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        } else if (config.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+        switch (config.orientation) {
+            case Configuration.ORIENTATION_LANDSCAPE:
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                break;
+            case Configuration.ORIENTATION_PORTRAIT:
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+                break;
         }
     }
 
