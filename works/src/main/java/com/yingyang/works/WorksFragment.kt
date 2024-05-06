@@ -68,6 +68,8 @@ class WorksFragment : BaseFragment<FragmentWorksBinding>() {
             override fun onPageSelected(position: Int) {
                 audioFragment.isShow = 0 == position
                 videoFragment.isShow = 1 == position
+                audioFragment.loadData()
+                videoFragment.loadData()
             }
 
             override fun onPageScrollStateChanged(state: Int) {

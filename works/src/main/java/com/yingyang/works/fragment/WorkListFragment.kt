@@ -1,5 +1,6 @@
 package com.yingyang.works.fragment
 
+import android.util.Log
 import com.yingyang.works.adapter.WorkAdapter
 import com.yingyang.works.databinding.FragmentWorkListBinding
 import com.yingyangfly.baselib.base.BaseFragment
@@ -29,9 +30,7 @@ class WorkListFragment : BaseFragment<FragmentWorkListBinding>() {
 
     }
 
-
-    override fun onResume() {
-        super.onResume()
+    fun loadData() {
         if (isShow) {
             if (videoDao != null) {
                 val list = videoDao!!.getAllVideoBean(typeStatus)
