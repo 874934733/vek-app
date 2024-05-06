@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ResourceName">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.yingyang.widget.ClearEditText
+            android:id="@+id/etUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/view_12"
+            android:layout_marginTop="@dimen/view_12"
+            android:layout_marginEnd="@dimen/view_12"
+            android:drawableRight="@mipmap/delete"
+            android:hint="请输入分享视频地址"
+            android:singleLine="true"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/view_45"
+            android:layout_marginStart="@dimen/view_12"
+            android:layout_marginTop="@dimen/view_25"
+            android:layout_marginEnd="@dimen/view_12"
+            android:background="@drawable/bg_home_btn"
+            android:text="确定"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/txt_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etUrl" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

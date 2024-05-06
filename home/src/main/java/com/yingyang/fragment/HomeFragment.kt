@@ -17,6 +17,8 @@ import com.yingyangfly.baselib.ext.initCenterTitle
 import com.yingyangfly.baselib.ext.setOnSingleClickListener
 import com.yingyangfly.baselib.ext.setTitleDividerVisible
 import com.yingyangfly.baselib.router.RouterUrlCommon
+import com.yingyangfly.baselib.utils.ToastUtil
+import com.yingyangfly.baselib.utils.ToastUtils
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.File
@@ -47,6 +49,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun initListener() {
         binding {
+            //视频提取
+            btnVideoExtraction.setOnSingleClickListener {
+                ARouter.getInstance().build(RouterUrlCommon.extractingVideos).navigation()
+            }
             //音频录制
             btnAudioRecording.setOnSingleClickListener {
                 if (audioPermissionBool()) {
@@ -116,6 +122,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
             override fun onComplete() {
                 requireActivity().runOnUiThread {
+                    ToastUtil.show(mContext, "拼接完成")
                     dimissLoading()
                 }
             }

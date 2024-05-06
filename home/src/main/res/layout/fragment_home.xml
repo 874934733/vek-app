@@ -17,7 +17,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnVideoExtraction"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/view_60"
@@ -31,7 +31,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_weight="1" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnAudioExtraction"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/view_60"
@@ -44,7 +44,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_weight="1" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnAudioVideoExtraction"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/view_60"
@@ -59,7 +59,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/btnVideoExtraction"
                 app:layout_constraintVertical_weight="1" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnAudioClip"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/view_60"
@@ -84,7 +84,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/extractionLayout">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnAudioMerge"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/view_60"
@@ -98,7 +98,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_weight="1" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnOnLineAudioMerge"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/view_60"
@@ -111,7 +111,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_weight="1" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnAudioSplicing"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/view_60"
@@ -126,7 +126,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/btnAudioMerge"
                 app:layout_constraintVertical_weight="1" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnAudioSegmentation"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/view_60"
@@ -141,7 +141,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/btnOnLineAudioMerge"
                 app:layout_constraintVertical_weight="1" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnBatchAudioExtraction"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/view_60"
@@ -156,7 +156,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/btnAudioSplicing"
                 app:layout_constraintVertical_weight="1" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnAudioRecording"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/view_60"
@@ -171,7 +171,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/btnAudioSegmentation"
                 app:layout_constraintVertical_weight="1" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnFormatConversion"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/view_60"
@@ -186,7 +186,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/btnBatchAudioExtraction"
                 app:layout_constraintVertical_weight="1" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNone"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/view_60"
