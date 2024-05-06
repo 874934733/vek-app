@@ -37,7 +37,11 @@ import com.yingyangfly.baselib.R;
 import com.yingyangfly.baselib.dialog.LoadingDialog;
 import com.yingyangfly.baselib.jsbridge.BridgeWebView;
 import com.yingyangfly.baselib.jsbridge.BridgeWebViewClient;
+import com.yingyangfly.baselib.room.AppDataBase;
+import com.yingyangfly.baselib.room.VideoBean;
+import com.yingyangfly.baselib.room.VideoDao;
 import com.yingyangfly.baselib.utils.DownloadUtils;
+import com.yingyangfly.baselib.utils.ToastUtil;
 
 
 /**
@@ -65,6 +69,8 @@ public class WebViewActivity extends AppCompatActivity {
 
     private LoadingDialog loadingDialog;
 
+    private AppDataBase db;
+    private VideoDao videoDao;
 
     public static void open(Context mContext, String url) {
         Intent intent = new Intent(mContext, WebViewActivity.class);
@@ -86,6 +92,10 @@ public class WebViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.webview_activity_main_h5);
         loadingDialog = new LoadingDialog(this);
+        db = AppDataBase.getInstance(this.getApplicationContext());
+        if (db != null) {
+            videoDao = db.getVideoDao();
+        }
         WebViewCommonUtils.setStatusBarColor(this, Color.parseColor("#ffffff"));
         BarUtils.setStatusBarLightMode(this, true);
 
@@ -326,12 +336,14 @@ public class WebViewActivity extends AppCompatActivity {
                     String type = DownloadUtils.getContentType(requestUrl);
                     if (type.startsWith("video")) {
                         Log.i("TAG", "webResourceRequest_video:" + requestUrl);
-                        String shortUrl = "";
-                        if (url.contains("douyin.com") || url.contains("ixigua.com")) {
-                            shortUrl = url;
+                        if (videoDao != null) {
+                            VideoBean videoBean = new VideoBean();
+                            videoBean.setDate(String.valueOf(System.currentTimeMillis()));
+                            videoBean.setUrl(requestUrl);
+                            videoBean.setShereUrl(url);
+                            videoDao.insert(videoBean);
+                            ToastUtil.Companion.show(mContext, "获取成功");
                         }
-                        String finalShortUrl = shortUrl;
-                        runOnUiThread(() -> DownloadUtils.downloadDialog(mContext, requestUrl, finalShortUrl));
                     }
                 }
                 return super.shouldInterceptRequest(webView, webResourceRequest);
