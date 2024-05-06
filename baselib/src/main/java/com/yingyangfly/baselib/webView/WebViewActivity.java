@@ -389,22 +389,34 @@ public class WebViewActivity extends AppCompatActivity {
                     String type = DownloadUtils.getContentType(requestUrl);
                     if (type.startsWith("video")) {
                         Log.i("TAG", "webResourceRequest_video:" + requestUrl);
-                        String shortUrl = "";
                         if (url.contains("douyin.com") || url.contains("ixigua.com")) {
-                            shortUrl = url;
-                        }
-                        String finalShortUrl = shortUrl;
-                        runOnUiThread(() -> {
-                            if (videoDao != null) {
-                                VideoBean videoBean = new VideoBean();
-                                videoBean.setDate(String.valueOf(System.currentTimeMillis()));
-                                videoBean.setUrl(requestUrl);
-                                videoBean.setShereUrl(url);
-                                videoBean.setType("2");
-                                videoDao.insert(videoBean);
-                                ToastUtil.Companion.show(mContext, "提取成功，已保存到作品" + videoBean.getDate());
+                            if (!requestUrl.endsWith(".mp4")) {
+                                runOnUiThread(() -> {
+                                    if (videoDao != null) {
+                                        VideoBean videoBean = new VideoBean();
+                                        videoBean.setDate(String.valueOf(System.currentTimeMillis()));
+                                        videoBean.setUrl(requestUrl);
+                                        videoBean.setShereUrl(url);
+                                        videoBean.setType("2");
+                                        videoDao.insert(videoBean);
+                                        ToastUtil.Companion.show(mContext, "提取成功，已保存到作品" + videoBean.getDate());
+                                    }
+                                });
                             }
-                        });
+                        } else {
+                            runOnUiThread(() -> {
+                                if (videoDao != null) {
+                                    VideoBean videoBean = new VideoBean();
+                                    videoBean.setDate(String.valueOf(System.currentTimeMillis()));
+                                    videoBean.setUrl(requestUrl);
+                                    videoBean.setShereUrl(url);
+                                    videoBean.setType("2");
+                                    videoDao.insert(videoBean);
+                                    ToastUtil.Companion.show(mContext, "提取成功，已保存到作品" + videoBean.getDate());
+                                }
+                            });
+                        }
+
                     }
                 }
                 return super.shouldInterceptRequest(webView, webResourceRequest);
