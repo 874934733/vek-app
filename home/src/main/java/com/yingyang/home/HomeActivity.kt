@@ -20,15 +20,13 @@ import com.yingyangfly.baselib.utils.TabUtils
 class HomeActivity : BaseActivity<ActivityHomeBinding>(), TabLayout.OnTabSelectedListener {
 
     private var tabTitles =
-        mutableListOf(R.string.tab1, R.string.tab2, R.string.tab3, R.string.tab4)
+        mutableListOf(R.string.tab1, R.string.tab3, R.string.tab4)
     private var tabImgs = mutableListOf(
         R.drawable.tab1_selector,
-        R.drawable.tab2_selector,
         R.drawable.tab3_selector,
         R.drawable.tab4_selector,
     )
     private val homeFragment by lazy { HomeFragment() }//首页
-    private val changeVoiceFragment by lazy { RouterUtil.getFragment(RouterUrlCommon.changeVoice) }//变声
     private val worksFragment by lazy { RouterUtil.getFragment(RouterUrlCommon.works) }//作品
     private val mainFragment by lazy { RouterUtil.getFragment(RouterUrlCommon.main) }//我的
     private lateinit var homePagerAdapter: HomePagerAdapter
@@ -41,7 +39,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), TabLayout.OnTabSelecte
 
     private fun setFragment() {
         tabFragments.add(homeFragment)
-        tabFragments.add(changeVoiceFragment)
         tabFragments.add(worksFragment)
         tabFragments.add(mainFragment)
 

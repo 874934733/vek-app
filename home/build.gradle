@@ -18,7 +18,6 @@ dependencies {
     implementation project(path: ':baselib')
     implementation project(path: ':main')
     implementation project(path: ':works')
-    implementation project(path: ':changevoice')
     api fileTree(exclude: '*.bak', dir: 'libs')
     implementation(rootProject.ext.androidx.kotlin_lib)
     implementation(rootProject.ext.androidx.kotlin_core)
