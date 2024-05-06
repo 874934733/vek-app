@@ -21,6 +21,10 @@ public class VideoBean implements Serializable {
 
     private String shereUrl;//提取前分享链接
 
+    private String name;//作品名称
+
+
+
     public int getId() {
         return id;
     }
@@ -60,5 +64,16 @@ public class VideoBean implements Serializable {
 
     public void setShereUrl(String shereUrl) {
         this.shereUrl = shereUrl;
+    }
+
+    public String getName() {
+        if (TextUtils.isEmpty(name)) {
+            return "";
+        }
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

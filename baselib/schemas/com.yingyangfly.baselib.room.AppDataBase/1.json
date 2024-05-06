@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "667e5051e0d4ffca5fd548d080f4953a",
+    "identityHash": "3a234141e9136ad0488d9e8d08f8896c",
     "entities": [
       {
         "tableName": "Video",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` TEXT, `url` TEXT, `shereUrl` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` TEXT, `url` TEXT, `shereUrl` TEXT, `name` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -31,6 +31,12 @@
             "columnName": "shereUrl",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -46,7 +52,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '667e5051e0d4ffca5fd548d080f4953a')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3a234141e9136ad0488d9e8d08f8896c')"
     ]
   }
 }

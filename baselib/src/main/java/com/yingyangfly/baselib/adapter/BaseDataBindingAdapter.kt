@@ -7,7 +7,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.yingyangfly.baselib.R
-import com.yingyangfly.baselib.utils.ViewTool
 
 /**
  * @author gold
@@ -36,7 +35,7 @@ abstract class BaseDataBindingAdapter<T, B : ViewDataBinding> :
     /**
      * 是否显示空布局，默认不显示
      */
-    var showEmptyView = false
+    var showEmptyView = true
 
     /**
      * 数据列表，只支持一种类型的数据
@@ -72,7 +71,6 @@ abstract class BaseDataBindingAdapter<T, B : ViewDataBinding> :
             val binding = DataBindingUtil.inflate<B>(
                 LayoutInflater.from(parent.context), layoutId, parent, false
             )
-            ViewTool.inflateFragmentPixels(parent.context, binding.root, 1194, 834)
             ViewHolder(binding)
         }
     }

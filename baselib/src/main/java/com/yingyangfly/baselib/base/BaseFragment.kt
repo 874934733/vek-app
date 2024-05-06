@@ -19,6 +19,8 @@ import com.yingyangfly.baselib.dialog.LoadingDialog
 import com.yingyangfly.baselib.ext.getDbClass
 import com.yingyangfly.baselib.ext.initBar
 import com.yingyangfly.baselib.ext.initTitle
+import com.yingyangfly.baselib.room.AppDataBase
+import com.yingyangfly.baselib.room.VideoDao
 import com.yingyangfly.baselib.utils.ResUtil
 import gorden.rxbus2.RxBus
 
@@ -57,6 +59,9 @@ abstract class BaseFragment<DB : ViewDataBinding> : Fragment(), OnRefreshLoadMor
         LoadingDialog(mContext)
     }
 
+    var db: AppDataBase? = null
+    var videoDao: VideoDao? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -73,6 +78,10 @@ abstract class BaseFragment<DB : ViewDataBinding> : Fragment(), OnRefreshLoadMor
         )
         binding.root.layoutParams = params
         bindingBase.llytContent.addView(binding.root)
+        db = AppDataBase.getInstance(mContext.applicationContext)
+        if (db != null) {
+            videoDao = db?.getVideoDao()
+        }
         initMVVM()
         initViews()
         initListener()
