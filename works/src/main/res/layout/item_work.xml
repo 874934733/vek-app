@@ -12,7 +12,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -25,6 +25,11 @@
             android:textColor="@color/base_text_85"
             android:textSize="@dimen/txt_16"
             tools:text="你好" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/view_1"
+            android:background="@color/color_E8E8E8" />
     </LinearLayout>
 
 </layout>
