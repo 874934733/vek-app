@@ -43,7 +43,6 @@ import com.yingyangfly.baselib.room.AppDataBase;
 import com.yingyangfly.baselib.room.VideoBean;
 import com.yingyangfly.baselib.room.VideoDao;
 import com.yingyangfly.baselib.utils.DownloadUtils;
-import com.yingyangfly.baselib.utils.ToastUtil;
 
 /**
  * h5入口
