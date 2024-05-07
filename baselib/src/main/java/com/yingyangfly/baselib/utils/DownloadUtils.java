@@ -1,6 +1,5 @@
 package com.yingyangfly.baselib.utils;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
@@ -29,7 +28,6 @@ public class DownloadUtils {
     public static LinkedList<String> linkedList = new LinkedList<>();
 
     public static void downloadDialog(Context mContext, String url, String shortUrl) {
-
         if (TextUtils.isEmpty(shortUrl) && !TextUtils.isEmpty(url)) {
             shortUrl = url.split("\\?")[0];
         }
@@ -44,21 +42,8 @@ public class DownloadUtils {
             return;
         }
         linkedList.add(url);
-
-        String finalShortUrl = shortUrl;
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setMessage("是否下载？");
-        builder.setPositiveButton("确定", (dialogInterface, i) -> {
-            //处理下载事件
-            download(url, finalShortUrl);
-        });
-        builder.setNegativeButton("取消", (dialogInterface, i) -> {
-            dialogInterface.dismiss();
-        });
-        builder.setOnDismissListener(dialogInterface -> {
-            linkedList.remove(url);
-        });
-        builder.show();
+        //处理下载事件
+        download(url, shortUrl);
     }
 
     public static void download(String url, String shortUrl) {
@@ -92,19 +77,16 @@ public class DownloadUtils {
      * @param saveToFolder 下载目录
      */
     public static boolean downloadVideo(String shareInfo, String saveToFolder, String shortUrl) {
-
         //创建目录
         FileUtils.createOrExistsDir(saveToFolder);
-
         if (isExists(shortUrl)) {
             //下载过了
             return true;
         }
-
-        File file = new File(saveToFolder + "/" + EncryptUtils.encryptMD5ToString(shortUrl) + ".mp4");
+        String fileName = saveToFolder + "/" + EncryptUtils.encryptMD5ToString(shortUrl) + ".mp4";
+        Log.e("wpp", "fileName------------------------>    " + fileName);
+        File file = new File(fileName);
         File fileTemp = new File(saveToFolder + "/" + EncryptUtils.encryptMD5ToString(shortUrl) + ".temp");
-
-
         Map<String, String> headers = new HashMap<>();
         try {
             URL url = new URL(shareInfo);
@@ -122,7 +104,6 @@ public class DownloadUtils {
         FileUtils.delete(fileTemp);
         FileUtils.createOrExistsFile(fileTemp);
         Log.i(TAG, "file_path:" + fileTemp.getAbsolutePath());
-
         boolean writeRe = FileIOUtils.writeFileFromIS(fileTemp, in);
         if (writeRe) {
             boolean re = FileUtils.copy(fileTemp, file);

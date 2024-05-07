@@ -387,7 +387,7 @@ public class WebViewActivity extends AppCompatActivity {
                                         videoBean.setShereUrl(url);
                                         videoBean.setType("2");
                                         videoDao.insert(videoBean);
-                                        ToastUtil.Companion.show(mContext, "提取成功，已保存到作品" + videoBean.getDate());
+                                        DownloadUtils.downloadDialog(mContext, requestUrl, url);
                                     }
                                 });
                             }
@@ -400,7 +400,7 @@ public class WebViewActivity extends AppCompatActivity {
                                     videoBean.setShereUrl(url);
                                     videoBean.setType("2");
                                     videoDao.insert(videoBean);
-                                    ToastUtil.Companion.show(mContext, "提取成功，已保存到作品" + videoBean.getDate());
+                                    DownloadUtils.downloadDialog(mContext, requestUrl, url);
                                 }
                             });
                         }
