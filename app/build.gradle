@@ -58,7 +58,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
             debuggable true
-            resValue "string", "app_name", "音视频提取器dev"
+            resValue "string", "app_name", "视频提取王dev"
             manifestPlaceholders = [ENVIRONMENT: "appdebug",
                                     app_icon   : "@mipmap/ic_launcher", package_name: appId]
         }
@@ -69,7 +69,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
             debuggable true
-            resValue "string", "app_name", "音视频提取器"
+            resValue "string", "app_name", "视频提取王"
             manifestPlaceholders = [ENVIRONMENT: "appdebug",
                                     app_icon   : "@mipmap/ic_launcher", package_name: appId]
         }
