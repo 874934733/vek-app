@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alibaba.fastjson.JSONObject;
@@ -36,7 +37,6 @@ import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.yingyangfly.baselib.R;
-import com.yingyangfly.baselib.dialog.LoadingDialog;
 import com.yingyangfly.baselib.jsbridge.BridgeWebView;
 import com.yingyangfly.baselib.jsbridge.BridgeWebViewClient;
 import com.yingyangfly.baselib.room.AppDataBase;
@@ -56,11 +56,7 @@ public class WebViewActivity extends AppCompatActivity {
     private BridgeWebView webView;
     private ProgressBar progressBar;
     private RelativeLayout errorView;
-    private LinearLayout ivBack;
-    private LinearLayout ivRefresh;
     private RelativeLayout rlTitle;
-
-    private String url;
 
     //错误页面处理
     private boolean isError = false;
@@ -68,8 +64,6 @@ public class WebViewActivity extends AppCompatActivity {
 
     //是否第一次
     private boolean isFirst;
-
-    private LoadingDialog loadingDialog;
 
     private AppDataBase db;
     private VideoDao videoDao;
@@ -81,9 +75,10 @@ public class WebViewActivity extends AppCompatActivity {
     private IX5WebChromeClient.CustomViewCallback mCustomViewCallback;
 
 
-    public static void open(Context mContext, String url) {
+    public static void open(Context mContext, String url, String type) {
         Intent intent = new Intent(mContext, WebViewActivity.class);
         intent.putExtra("url", url);
+        intent.putExtra("type", type);
         mContext.startActivity(intent);
     }
 
@@ -91,7 +86,7 @@ public class WebViewActivity extends AppCompatActivity {
 
     public static class MyHandler extends Handler {
         @Override
-        public void handleMessage(Message msg) {
+        public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
         }
     }
@@ -100,7 +95,6 @@ public class WebViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.webview_activity_main_h5);
-        loadingDialog = new LoadingDialog(this);
         db = AppDataBase.getInstance(this.getApplicationContext());
         if (db != null) {
             videoDao = db.getVideoDao();
@@ -124,7 +118,7 @@ public class WebViewActivity extends AppCompatActivity {
 
         initView();
 
-        url = getIntent().getStringExtra("url");
+        String url = getIntent().getStringExtra("url");
         if (TextUtils.isEmpty(url)) {
             ToastUtils.showShort("请先初始化!");
             finish();
@@ -146,16 +140,12 @@ public class WebViewActivity extends AppCompatActivity {
         errorView = findViewById(R.id.error_page);
         errorView.setOnClickListener(v -> webView.reload());
 
-        ivBack = findViewById(R.id.ll_left);
-        ivRefresh = findViewById(R.id.ll_right);
+        LinearLayout ivBack = findViewById(R.id.ll_left);
+        LinearLayout ivRefresh = findViewById(R.id.ll_right);
         rlTitle = findViewById(R.id.rl_title);
 
         ivBack.setOnClickListener(v -> {
-
-            String url = webView.getUrl();
             //拦截首页的页面,以免返回到登录页面
-
-
             if (webView.canGoBack()) {
                 webView.goBack();
             } else {
@@ -188,9 +178,7 @@ public class WebViewActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        String url = webView.getUrl();
         //拦截首页的页面,以免返回到登录页面
-
         if (webView.canGoBack()) {
             webView.goBack();
             return;
@@ -454,10 +442,7 @@ public class WebViewActivity extends AppCompatActivity {
     public boolean interceptUrl(String url) {
         String urlSdk = "Inter";
         Log.i(TAG, "MainH5Activity_interceptUrl_url:" + url + ",KEY_INTERCEPT_URL_SDK:" + urlSdk);
-        if (url.toLowerCase().startsWith(urlSdk)) {
-            return true;
-        }
-        return false;
+        return url.toLowerCase().startsWith(urlSdk);
     }
 
     /**
@@ -498,17 +483,14 @@ public class WebViewActivity extends AppCompatActivity {
      * 横竖屏切换监听
      */
     @Override
-    public void onConfigurationChanged(Configuration config) {
+    public void onConfigurationChanged(@NonNull Configuration config) {
         super.onConfigurationChanged(config);
-        switch (config.orientation) {
-            case Configuration.ORIENTATION_LANDSCAPE:
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-                getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-                break;
-            case Configuration.ORIENTATION_PORTRAIT:
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-                getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-                break;
+        if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        } else if (config.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
         }
     }
 

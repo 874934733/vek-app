@@ -2,13 +2,10 @@ package com.yingyang.subfunction.extractingvideos
 
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ClipboardUtils
-import com.blankj.utilcode.util.ToastUtils
 import com.yingyang.home.databinding.ActivityExtractingVideosBinding
 import com.yingyangfly.baselib.base.BaseActivity
-import com.yingyangfly.baselib.ext.setOnSingleClickListener
 import com.yingyangfly.baselib.router.RouterUrlCommon
 import com.yingyangfly.baselib.utils.CommonUtils
-import com.yingyangfly.baselib.webView.WebViewActivity
 
 /**
  * 提取视频
@@ -29,20 +26,7 @@ class ExtractingVideosActivity : BaseActivity<ActivityExtractingVideosBinding>()
 
     override fun initData() {
         binding {
-            btnConfirm.setOnSingleClickListener {
-                if (binding.etUrl.getText().toString().isEmpty()) {
-                    ToastUtils.showShort("请输入链接！")
-                    return@setOnSingleClickListener
-                }
 
-                val url = CommonUtils.extractUrl(binding.etUrl.getText().toString())
-                if (url.isEmpty()) {
-                    ToastUtils.showShort("没有获取到链接!")
-                    return@setOnSingleClickListener
-                }
-                WebViewActivity.open(mContext, url)
-
-            }
         }
     }
 
