@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!--	标题     -->
+    <dimen name="toolbar_height" tools:ignore="ResourceName">45dp</dimen>
+    <dimen name="toolbar_text_size" tools:ignore="ResourceName">18sp</dimen>
+    <!--	 分割线     -->
+    <dimen name="divider_height" tools:ignore="ResourceName">2px</dimen>
+
+    <!--    默认字体大小-->
+    <dimen name="x_txt_default" tools:ignore="ResourceName">16sp</dimen>
+    <!--分割线默认宽 ，高度-->
+    <dimen name="border_default" tools:ignore="ResourceName">2px</dimen>
+
+    <!--字体大小-->
+    <dimen name="txt_smallest" tools:ignore="ResourceName">10sp</dimen>
+    <dimen name="txt_smaller" tools:ignore="ResourceName">12sp</dimen>
+    <dimen name="txt_small" tools:ignore="ResourceName">13sp</dimen>
+    <!--android TextView默认字体　为　15sp-->
+    <dimen name="txt_default" tools:ignore="ResourceName">16sp</dimen>
+    <dimen name="txt_14sp" tools:ignore="ResourceName">14sp</dimen>
+    <dimen name="txt_large" tools:ignore="ResourceName">18sp</dimen>
+    <dimen name="txt_larger" tools:ignore="ResourceName">20sp</dimen>
+    <dimen name="txt_largest" tools:ignore="ResourceName">22sp</dimen>
+    <!--添加的尺寸-->
+    <dimen name="txt_11" tools:ignore="ResourceName">11sp</dimen>
+    <dimen name="txt_12" tools:ignore="ResourceName">12sp</dimen>
+    <dimen name="txt_13" tools:ignore="ResourceName">13sp</dimen>
+    <dimen name="txt_15" tools:ignore="ResourceName">15sp</dimen>
+    <dimen name="txt_16" tools:ignore="ResourceName">16sp</dimen>
+    <dimen name="txt_17" tools:ignore="ResourceName">17sp</dimen>
+    <dimen name="txt_18" tools:ignore="ResourceName">18sp</dimen>
+    <dimen name="txt_20" tools:ignore="ResourceName">20sp</dimen>
+    <dimen name="txt_24" tools:ignore="ResourceName">24sp</dimen>
+    <dimen name="txt_26" tools:ignore="ResourceName">26sp</dimen>
+    <dimen name="txt_30" tools:ignore="ResourceName">30sp</dimen>
+    <dimen name="txt_36" tools:ignore="ResourceName">36sp</dimen>
+
+    <dimen name="view_minus4" tools:ignore="ResourceName">-4dp</dimen>
+    <dimen name="view_minus16" tools:ignore="ResourceName">-16dp</dimen>
+    <dimen name="view_minus22" tools:ignore="ResourceName">-22dp</dimen>
+    <dimen name="view_0" tools:ignore="ResourceName">0dp</dimen>
+    <dimen name="view_0.5" tools:ignore="ResourceName">0.5dp</dimen>
+    <dimen name="view_1" tools:ignore="ResourceName">1dp</dimen>
+    <dimen name="view_2" tools:ignore="ResourceName">2dp</dimen>
+    <dimen name="view_3" tools:ignore="ResourceName">3dp</dimen>
+    <dimen name="view_4" tools:ignore="ResourceName">4dp</dimen>
+    <dimen name="view_5" tools:ignore="ResourceName">5dp</dimen>
+    <dimen name="view_6" tools:ignore="ResourceName">6dp</dimen>
+    <dimen name="view_7" tools:ignore="ResourceName">7dp</dimen>
+    <dimen name="view_8" tools:ignore="ResourceName">8dp</dimen>
+    <dimen name="view_9" tools:ignore="ResourceName">9dp</dimen>
+    <dimen name="view_10" tools:ignore="ResourceName">10dp</dimen>
+    <dimen name="view_11" tools:ignore="ResourceName">11dp</dimen>
+    <dimen name="view_12" tools:ignore="ResourceName">12dp</dimen>
+    <dimen name="view_13" tools:ignore="ResourceName">13dp</dimen>
+    <dimen name="view_14" tools:ignore="ResourceName">14dp</dimen>
+    <dimen name="view_15" tools:ignore="ResourceName">15dp</dimen>
+    <dimen name="view_16" tools:ignore="ResourceName">16dp</dimen>
+    <dimen name="view_18" tools:ignore="ResourceName">18dp</dimen>
+    <dimen name="view_19" tools:ignore="ResourceName">19dp</dimen>
+    <dimen name="view_20" tools:ignore="ResourceName">20dp</dimen>
+    <dimen name="view_22" tools:ignore="ResourceName">22dp</dimen>
+    <dimen name="view_24" tools:ignore="ResourceName">24dp</dimen>
+    <dimen name="view_25" tools:ignore="ResourceName">25dp</dimen>
+    <dimen name="view_26" tools:ignore="ResourceName">26dp</dimen>
+    <dimen name="view_27" tools:ignore="ResourceName">27dp</dimen>
+    <dimen name="view_28" tools:ignore="ResourceName">28dp</dimen>
+    <dimen name="view_29" tools:ignore="ResourceName">29dp</dimen>
+    <dimen name="view_30" tools:ignore="ResourceName">30dp</dimen>
+    <dimen name="view_32" tools:ignore="ResourceName">32dp</dimen>
+    <dimen name="view_35" tools:ignore="ResourceName">35dp</dimen>
+    <dimen name="view_36" tools:ignore="ResourceName">36dp</dimen>
+    <dimen name="view_38" tools:ignore="ResourceName">38dp</dimen>
+    <dimen name="view_39" tools:ignore="ResourceName">39dp</dimen>
+    <dimen name="view_40" tools:ignore="ResourceName">40dp</dimen>
+    <dimen name="view_42" tools:ignore="ResourceName">42dp</dimen>
+    <dimen name="view_44" tools:ignore="ResourceName">44dp</dimen>
+    <dimen name="view_45" tools:ignore="ResourceName">45dp</dimen>
+    <dimen name="view_46" tools:ignore="ResourceName">44dp</dimen>
+    <dimen name="view_49" tools:ignore="ResourceName">49dp</dimen>
+    <dimen name="view_50" tools:ignore="ResourceName">50dp</dimen>
+    <dimen name="view_55" tools:ignore="ResourceName">55dp</dimen>
+    <dimen name="view_56" tools:ignore="ResourceName">56dp</dimen>
+    <dimen name="view_59" tools:ignore="ResourceName">59dp</dimen>
+    <dimen name="view_60" tools:ignore="ResourceName">60dp</dimen>
+    <dimen name="view_64" tools:ignore="ResourceName">64dp</dimen>
+    <dimen name="view_70" tools:ignore="ResourceName">70dp</dimen>
+    <dimen name="view_73" tools:ignore="ResourceName">73dp</dimen>
+    <dimen name="view_76" tools:ignore="ResourceName">76dp</dimen>
+    <dimen name="view_80" tools:ignore="ResourceName">80dp</dimen>
+    <dimen name="view_90" tools:ignore="ResourceName">90dp</dimen>
+    <dimen name="view_98" tools:ignore="ResourceName">98dp</dimen>
+    <dimen name="view_100" tools:ignore="ResourceName">100dp</dimen>
+    <dimen name="view_102" tools:ignore="ResourceName">102dp</dimen>
+    <dimen name="view_108" tools:ignore="ResourceName">108dp</dimen>
+    <dimen name="view_110" tools:ignore="ResourceName">110dp</dimen>
+    <dimen name="view_113" tools:ignore="ResourceName">113dp</dimen>
+    <dimen name="view_124" tools:ignore="ResourceName">124dp</dimen>
+    <dimen name="view_126" tools:ignore="ResourceName">126dp</dimen>
+    <dimen name="view_136" tools:ignore="ResourceName">136dp</dimen>
+    <dimen name="view_140" tools:ignore="ResourceName">140dp</dimen>
+    <dimen name="view_148" tools:ignore="ResourceName">148dp</dimen>
+    <dimen name="view_160" tools:ignore="ResourceName">160dp</dimen>
+    <dimen name="view_162" tools:ignore="ResourceName">162dp</dimen>
+    <dimen name="view_168" tools:ignore="ResourceName">168dp</dimen>
+    <dimen name="view_180" tools:ignore="ResourceName">180dp</dimen>
+    <dimen name="view_187" tools:ignore="ResourceName">187dp</dimen>
+    <dimen name="view_204" tools:ignore="ResourceName">204dp</dimen>
+    <dimen name="view_210" tools:ignore="ResourceName">210dp</dimen>
+    <dimen name="view_225" tools:ignore="ResourceName">225dp</dimen>
+    <dimen name="view_230" tools:ignore="ResourceName">230dp</dimen>
+    <dimen name="view_255" tools:ignore="ResourceName">255dp</dimen>
+    <dimen name="view_286" tools:ignore="ResourceName">286dp</dimen>
+    <dimen name="view_295" tools:ignore="ResourceName">295</dimen>
+    <dimen name="view_335" tools:ignore="ResourceName">335dp</dimen>
+    <dimen name="view_355" tools:ignore="ResourceName">355dp</dimen>
+    <dimen name="view_366" tools:ignore="ResourceName">366dp</dimen>
+
+    <dimen name="login_margin_left" tools:ignore="ResourceName">35dp</dimen>
+    <dimen name="propressbar_height_webview" tools:ignore="ResourceName">3dp</dimen>
+
+    <!--头像距离左边或者右边的距离-->
+    <dimen name="ease_chat_avatar_margin" tools:ignore="ResourceName">10dp</dimen>
+    <!--内容布局距离头像的距离-->
+    <dimen name="ease_chat_bubble_margin_avatar" tools:ignore="ResourceName">10dp</dimen>
+    <!--已送达距离bubble的距离-->
+    <dimen name="ease_chat_ack_margin_bubble" tools:ignore="ResourceName">5dp</dimen>
+    <dimen name="xlys_sub_title_text_size" tools:ignore="ResourceName">14sp</dimen>
+    <!--    聊天气泡 上面  和 上一个 气泡的间距-->
+    <dimen name="xlys_chat_box_margin" tools:ignore="ResourceName">10dp</dimen>
+</resources>

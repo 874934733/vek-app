@@ -4,22 +4,109 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="ResourceName">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="我的"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/txt_18"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:id="@+id/headLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/view_80"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/headImage"
+                android:layout_width="@dimen/view_60"
+                android:layout_height="@dimen/view_60"
+                android:layout_marginStart="@dimen/view_24"
+                android:background="@mipmap/core_default_user_icon_lively" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/view_8"
+                android:text="张三"
+                android:textColor="@color/base_text_85"
+                android:textSize="@dimen/txt_16" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/view_1"
+            android:background="@color/color_E8E8E8" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/view_80"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/view_24"
+                android:layout_weight="1"
+                android:text="张三"
+                android:textColor="@color/base_text_85"
+                android:textSize="@dimen/txt_16" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/view_40"
+                android:layout_marginStart="@dimen/view_8"
+                android:layout_marginEnd="@dimen/view_24"
+                android:background="@drawable/bg_submit_btn"
+                android:gravity="center"
+                android:paddingStart="@dimen/view_8"
+                android:paddingEnd="@dimen/view_8"
+                android:text="立即充值"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/txt_16" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/view_1"
+            android:background="@color/color_E8E8E8" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/view_80"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/view_24"
+                android:text="年费会员"
+                android:textColor="@color/base_text_85"
+                android:textSize="@dimen/txt_16" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/view_8"
+                android:layout_marginEnd="@dimen/view_24"
+                android:gravity="end"
+                android:paddingStart="@dimen/view_8"
+                android:paddingEnd="@dimen/view_8"
+                android:text="2024.10.01 到期"
+                android:textColor="@color/base_text_65"
+                android:textSize="@dimen/txt_14sp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/view_1"
+            android:background="@color/color_E8E8E8" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </layout>
