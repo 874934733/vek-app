@@ -1,7 +1,6 @@
 package com.yingyang.subfunction.extractingvideos
 
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.ClipboardUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yingyang.home.databinding.ActivityExtractingVideosBinding

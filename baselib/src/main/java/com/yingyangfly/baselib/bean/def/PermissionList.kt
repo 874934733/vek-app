@@ -6,7 +6,7 @@ import java.util.Arrays
 
 object PermissionList {
 
-    val cameraPermission = arrayOf(
+    val storagePermission = arrayOf(
         Permission.WRITE_EXTERNAL_STORAGE,
         Permission.READ_EXTERNAL_STORAGE,
     )
