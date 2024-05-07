@@ -12,6 +12,7 @@ import java.io.Serializable;
  */
 @Entity(tableName = "Video")
 public class VideoBean implements Serializable {
+
     @PrimaryKey(autoGenerate = true)
     private int id;
 

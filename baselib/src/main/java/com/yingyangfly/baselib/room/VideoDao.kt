@@ -21,6 +21,9 @@ interface VideoDao : BaseDao<VideoBean> {
     @Query("select * from Video where id = :id")
     fun getVideoById(id: Int): VideoBean
 
+    @Query("select * from Video where url = :url")
+    fun getVideoByUrl(url: String): VideoBean
+
     @Query("delete from Video where id = :id")
     fun deleteById(id: Int)
 
