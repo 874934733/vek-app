@@ -20,6 +20,7 @@ class WorkListFragment : BaseFragment<FragmentWorkListBinding>() {
     private val adapter by lazy { WorkAdapter() }
 
     override fun initViews() {
+        adapter.setAdapterContent(mContext)
         adapter.setData(videoBeans)
         binding.rvWork.adapter = adapter
         adapter.onDeleteClickListener = {
