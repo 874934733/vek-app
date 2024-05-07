@@ -387,7 +387,9 @@ public class WebViewActivity extends AppCompatActivity {
                                         videoBean.setShereUrl(url);
                                         videoBean.setType("2");
                                         videoDao.insert(videoBean);
-                                        DownloadUtils.downloadDialog(requestUrl, url);
+                                        DownloadUtils.downloadDialog(requestUrl, url, path -> {
+                                            Log.e("wpp", "path----------------------->     "+path);
+                                        });
                                     }
                                 });
                             }
@@ -400,7 +402,9 @@ public class WebViewActivity extends AppCompatActivity {
                                     videoBean.setShereUrl(url);
                                     videoBean.setType("2");
                                     videoDao.insert(videoBean);
-                                    DownloadUtils.downloadDialog(requestUrl, url);
+                                    DownloadUtils.downloadDialog(requestUrl, url, path -> {
+                                        Log.e("wpp", "path----------------------->     "+path);
+                                    });
                                 }
                             });
                         }
@@ -420,7 +424,7 @@ public class WebViewActivity extends AppCompatActivity {
         });
 
         //跳转系统浏览器下载文件
-        WebViewUtils.setDownloadListener(mContext, webView);
+//        WebViewUtils.setDownloadListener(mContext, webView);
 
         //h5交互
         webView.registerHandler("writeLocalStorage", (data, function) -> {

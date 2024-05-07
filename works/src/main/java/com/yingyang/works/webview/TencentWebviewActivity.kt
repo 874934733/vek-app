@@ -45,10 +45,6 @@ class TencentWebviewActivity : AppCompatActivity() {
         if (TextUtils.isEmpty(url).not()) {
             webView.loadUrl(url)
         }
-
-        btnSave.setOnSingleClickListener {
-            runOnUiThread { DownloadUtils.downloadDialog(url, url) }
-        }
     }
 
     override fun onDestroy() {

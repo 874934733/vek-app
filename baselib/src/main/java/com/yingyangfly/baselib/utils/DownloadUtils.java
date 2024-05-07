@@ -27,7 +27,7 @@ public class DownloadUtils {
 
     public static LinkedList<String> linkedList = new LinkedList<>();
 
-    public static void downloadDialog(String url, String shortUrl) {
+    public static void downloadDialog(String url, String shortUrl, SetOnDownLoadListener setOnDownLoadListener) {
         if (TextUtils.isEmpty(shortUrl) && !TextUtils.isEmpty(url)) {
             shortUrl = url.split("\\?")[0];
         }
@@ -43,10 +43,10 @@ public class DownloadUtils {
         }
         linkedList.add(url);
         //处理下载事件
-        download(url, shortUrl);
+        download(url, shortUrl, setOnDownLoadListener);
     }
 
-    public static void download(String url, String shortUrl) {
+    public static void download(String url, String shortUrl, SetOnDownLoadListener setOnDownLoadListener) {
         if (TextUtils.isEmpty(shortUrl) && !TextUtils.isEmpty(url)) {
             shortUrl = url.split("\\?")[0];
         }
@@ -63,8 +63,10 @@ public class DownloadUtils {
         new Thread(() -> {
             boolean re = DownloadUtils.downloadVideo(url, PathUtils.getExternalDownloadsPath(), finalShortUrl);
             if (re) {
-                ToastUtils.cancel();
-                ToastUtils.showLong("下载成功,文件在Download目录下!");
+//                ToastUtils.cancel();
+//                ToastUtils.showLong("下载成功,文件在Download目录下!");
+                String fileName = PathUtils.getExternalDownloadsPath() + "/" + EncryptUtils.encryptMD5ToString(finalShortUrl) + ".mp4";
+                setOnDownLoadListener.success(fileName);
             }
         }).start();
 
@@ -217,5 +219,9 @@ public class DownloadUtils {
             }
         }
         return ans;
+    }
+
+    public interface SetOnDownLoadListener {
+        void success(String path);
     }
 }

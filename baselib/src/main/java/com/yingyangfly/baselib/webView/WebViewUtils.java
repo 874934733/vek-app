@@ -85,7 +85,7 @@ public class WebViewUtils {
 //            builder.setNegativeButton("取消", (dialogInterface, i) -> dialogInterface.dismiss());
 //            builder.show();
             //内部下载
-            DownloadUtils.downloadDialog(url, "");
+//            DownloadUtils.downloadDialog(url, "");
         });
     }
 
