@@ -17,8 +17,6 @@
             android:name="com.yingyang.home.HomeActivity"
             android:launchMode="singleTask" />
 
-        <activity android:name="com.yingyang.record.RecordActivity" />
-
         <activity android:name="com.yingyang.subfunction.extractingvideos.ExtractingVideosActivity" />
 
     </application>

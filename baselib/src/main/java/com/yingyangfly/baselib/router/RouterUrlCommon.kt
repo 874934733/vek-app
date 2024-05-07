@@ -31,11 +31,6 @@ object RouterUrlCommon {
     const val main = "/main/page"
 
     /**
-     * 录音
-     */
-    const val record = "/record/page"
-
-    /**
      * 提取视频
      */
     const val extractingVideos = "/extracting/videos"
