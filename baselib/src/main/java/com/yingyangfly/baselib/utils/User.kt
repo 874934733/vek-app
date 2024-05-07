@@ -13,27 +13,15 @@ object User {
     val context: Context
         get() = BaseApplication.appContext
 
-    fun saveMobile(mobile: String) {
-        Preferences.put(CommonParam.MOBILE, mobile)
+    fun saveAndroidId(androidId: String) {
+        Preferences.put(CommonParam.androidId, androidId)
     }
 
-    fun getMobile(): String {
-        return if (Preferences.getString(CommonParam.MOBILE).isNullOrEmpty()) {
+    fun getAndroidId(): String {
+        return if (Preferences.getString(CommonParam.androidId).isNullOrEmpty()) {
             ""
         } else {
-            Preferences.getString(CommonParam.MOBILE)!!
-        }
-    }
-
-    fun saveIdCard(idCard: String) {
-        Preferences.put(CommonParam.IDCARD, idCard)
-    }
-
-    fun getIdCard(): String {
-        return if (Preferences.getString(CommonParam.IDCARD).isNullOrEmpty()) {
-            ""
-        } else {
-            Preferences.getString(CommonParam.IDCARD)!!
+            Preferences.getString(CommonParam.androidId)!!
         }
     }
 
@@ -99,36 +87,6 @@ object User {
     }
 
     /**
-     * 保存医生头像
-     */
-    fun saveDoctorAvatar(avatar: String) {
-        Preferences.put(CommonParam.DOCTORAVATAR, avatar)
-    }
-
-    fun getDoctorAvatar(): String {
-        return if (TextUtils.isEmpty(Preferences.getString(CommonParam.DOCTORAVATAR))) {
-            ""
-        } else {
-            Preferences.getString(CommonParam.DOCTORAVATAR)!!
-        }
-    }
-
-    /**
-     * 保存患者头像
-     */
-    fun saveAvatar(avatar: String) {
-        Preferences.put(CommonParam.AVATAR, avatar)
-    }
-
-    fun getAvatar(): String {
-        return if (TextUtils.isEmpty(Preferences.getString(CommonParam.AVATAR))) {
-            ""
-        } else {
-            Preferences.getString(CommonParam.AVATAR)!!
-        }
-    }
-
-    /**
      * 保存患者姓名
      */
     fun saveName(name: String) {
@@ -166,21 +124,6 @@ object User {
         return sdf.format(Date())
     }
 
-    /**
-     * 是否展示过任务弹窗
-     */
-    fun saveTaskDialogStatus(time: String) {
-        Preferences.put(CommonParam.TASKDIALOG, time)
-    }
-
-    fun getTaskDialogStatus(): String {
-        return if (TextUtils.isEmpty(Preferences.getString(CommonParam.TASKDIALOG))) {
-            ""
-        } else {
-            Preferences.getString(CommonParam.TASKDIALOG)!!
-        }
-    }
-
     fun saveOrgCode(orgCode: String) {
         Preferences.put(CommonParam.ORGCODE, orgCode)
         CrashReport.setUserId(orgCode)
@@ -191,22 +134,6 @@ object User {
             ""
         } else {
             Preferences.getString(CommonParam.ORGCODE)!!
-        }
-    }
-
-    /**
-     * 是否第一次登陆 0第一次登陆
-     */
-    fun saveFirstLogin(firstLogin: String) {
-        Preferences.put(CommonParam.FIRSTLOGIN, firstLogin)
-        CrashReport.setUserId(firstLogin)
-    }
-
-    fun getFirstLogin(): String {
-        return if (TextUtils.isEmpty(Preferences.getString(CommonParam.FIRSTLOGIN))) {
-            ""
-        } else {
-            Preferences.getString(CommonParam.FIRSTLOGIN)!!
         }
     }
 
@@ -222,65 +149,6 @@ object User {
             ""
         } else {
             Preferences.getString(CommonParam.PADNO)!!
-        }
-    }
-
-    /**
-     * 音效保存日期
-     */
-    fun saveSaveGameSoundDate(saveGameSoundDate: String) {
-        Preferences.put(CommonParam.SAVEGAMESOUNDDATE, saveGameSoundDate)
-    }
-
-    fun getSaveGameSoundDate(): String {
-        return if (TextUtils.isEmpty(Preferences.getString(CommonParam.SAVEGAMESOUNDDATE))) {
-            ""
-        } else {
-            Preferences.getString(CommonParam.SAVEGAMESOUNDDATE)!!
-        }
-    }
-
-    fun isUpdateSaveGameSound(): Boolean {
-        return if (TextUtils.isEmpty(getSaveGameSoundDate())) {
-            true
-        } else {
-            TextUtils.equals(getSaveGameSoundDate(), getNowDay()).not()
-        }
-    }
-
-    /**
-     * 保存理疗报告地址
-     */
-    fun saveTrainReportUrl(trainReportUrl: String) {
-        if (TextUtils.isEmpty(trainReportUrl).not()) {
-            Preferences.put(CommonParam.TRAINREPORT_URL, trainReportUrl)
-        }
-    }
-
-    fun getTrainReportUrl(): String {
-        return if (TextUtils.isEmpty(Preferences.getString(CommonParam.TRAINREPORT_URL))) {
-            ""
-        } else {
-            Preferences.getString(CommonParam.TRAINREPORT_URL)!!
-        }
-    }
-
-    /**
-     * 保存理疗报告IM消息内容
-     */
-    fun saveMessageBean(messageBean: String) {
-        if (TextUtils.isEmpty(messageBean).not()) {
-            Preferences.put(CommonParam.MESSAGEBEAN, messageBean)
-        } else {
-            Preferences.put(CommonParam.MESSAGEBEAN, "")
-        }
-    }
-
-    fun getMessageBean(): String {
-        return if (TextUtils.isEmpty(Preferences.getString(CommonParam.MESSAGEBEAN))) {
-            ""
-        } else {
-            Preferences.getString(CommonParam.MESSAGEBEAN)!!
         }
     }
 }

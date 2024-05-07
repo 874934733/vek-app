@@ -28,12 +28,8 @@ open class BaseResp<T>(
                 func(data)
             }
             ResponseCode.TOKENLOSEEFFICACY -> {
-                User.saveMobile("")
-                User.saveIdCard("")
                 User.saveUserSex("")
                 User.saveUserAge("")
-                User.saveDoctorAvatar("")
-                User.saveAvatar("")
                 User.saveName("")
                 User.saveUserId("")
                 User.saveOrgCode("")

@@ -36,12 +36,8 @@ abstract class BaseObserver<T> : Observer<XBaseEntity<T>> {
                 CrashReport.postCatchedException(e)
             }
         } else if (TOKENLOSEEFFICACY == tBaseEntity.code) {
-            User.saveMobile("")
-            User.saveIdCard("")
             User.saveUserSex("")
             User.saveUserAge("")
-            User.saveDoctorAvatar("")
-            User.saveAvatar("")
             User.saveName("")
             User.saveUserId("")
             User.savePadNo("")

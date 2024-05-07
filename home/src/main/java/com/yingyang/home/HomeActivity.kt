@@ -1,5 +1,8 @@
 package com.yingyang.home
 
+import android.annotation.SuppressLint
+import android.provider.Settings
+import android.util.Log
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -9,9 +12,12 @@ import com.google.android.material.tabs.TabLayout
 import com.yingyang.fragment.HomeFragment
 import com.yingyang.home.databinding.ActivityHomeBinding
 import com.yingyangfly.baselib.base.BaseActivity
+import com.yingyangfly.baselib.bean.def.PermissionList
+import com.yingyangfly.baselib.ext.check
 import com.yingyangfly.baselib.router.RouterUrlCommon
 import com.yingyangfly.baselib.utils.RouterUtil
 import com.yingyangfly.baselib.utils.TabUtils
+import com.yingyangfly.baselib.utils.User
 
 /**
  * app首页
@@ -59,8 +65,14 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), TabLayout.OnTabSelecte
         }
     }
 
+    @SuppressLint("HardwareIds")
     override fun initData() {
-
+        PermissionList.readPhoneStatePermission.check(this) {
+            val androidId: String =
+                Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
+            Log.e("wpp", "androidId------------------------------>      " + androidId)
+            User.saveAndroidId(androidId)
+        }
     }
 
     inner class HomePagerAdapter(fm: FragmentManager) :
