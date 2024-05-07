@@ -1,6 +1,5 @@
 package com.yingyang.fragment
 
-import android.Manifest
 import com.blankj.utilcode.util.ClipboardUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yingyang.home.databinding.FragmentHomeBinding
@@ -12,19 +11,11 @@ import com.yingyangfly.baselib.ext.setOnSingleClickListener
 import com.yingyangfly.baselib.ext.setTitleDividerVisible
 import com.yingyangfly.baselib.utils.CommonUtils
 import com.yingyangfly.baselib.webView.WebViewActivity
-import java.util.Arrays
 
 /**
  * 首页fragment
  */
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
-
-    // 添加存储权限的原因是 以防启动页面没有授权存储权限 相机权限，摄像头权限
-    private val audioPermission = Arrays.asList(
-        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-        Manifest.permission.READ_EXTERNAL_STORAGE,
-        Manifest.permission.RECORD_AUDIO
-    ).toTypedArray()
 
     override fun initViews() {
         initCenterTitle("音视频提取")
