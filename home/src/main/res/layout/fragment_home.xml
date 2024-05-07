@@ -6,45 +6,39 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="@dimen/view_20">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/extractionLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/view_20"
-            app:layout_constraintEnd_toEndOf="parent"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnVideoExtraction"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/view_60"
+            android:layout_marginEnd="@dimen/view_10"
+            android:background="@drawable/bg_home_btn"
+            android:gravity="center"
+            android:text="视频提取"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/txt_18"
+            app:layout_constraintEnd_toStartOf="@+id/btnAudioExtraction"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_weight="1" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnVideoExtraction"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/view_60"
-                android:layout_marginEnd="@dimen/view_10"
-                android:background="@drawable/bg_home_btn"
-                android:text="视频提取"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/txt_18"
-                app:layout_constraintEnd_toStartOf="@+id/btnAudioExtraction"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_weight="1" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAudioExtraction"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/view_60"
+            android:layout_marginStart="@dimen/view_10"
+            android:background="@drawable/bg_home_btn"
+            android:gravity="center"
+            android:text="音频提取"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/txt_18"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnVideoExtraction"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_weight="1" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnAudioExtraction"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/view_60"
-                android:background="@drawable/bg_home_btn"
-                android:text="音频提取"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/txt_18"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btnVideoExtraction"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_weight="1" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
