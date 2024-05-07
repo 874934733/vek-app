@@ -47,7 +47,7 @@ class TencentWebviewActivity : AppCompatActivity() {
         }
 
         btnSave.setOnSingleClickListener {
-            runOnUiThread { DownloadUtils.downloadDialog(this, url, url) }
+            runOnUiThread { DownloadUtils.downloadDialog(url, url) }
         }
     }
 

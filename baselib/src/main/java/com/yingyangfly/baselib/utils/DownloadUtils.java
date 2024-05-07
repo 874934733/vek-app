@@ -27,7 +27,7 @@ public class DownloadUtils {
 
     public static LinkedList<String> linkedList = new LinkedList<>();
 
-    public static void downloadDialog(Context mContext, String url, String shortUrl) {
+    public static void downloadDialog(String url, String shortUrl) {
         if (TextUtils.isEmpty(shortUrl) && !TextUtils.isEmpty(url)) {
             shortUrl = url.split("\\?")[0];
         }

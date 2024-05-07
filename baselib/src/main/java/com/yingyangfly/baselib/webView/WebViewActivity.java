@@ -387,7 +387,7 @@ public class WebViewActivity extends AppCompatActivity {
                                         videoBean.setShereUrl(url);
                                         videoBean.setType("2");
                                         videoDao.insert(videoBean);
-                                        DownloadUtils.downloadDialog(mContext, requestUrl, url);
+                                        DownloadUtils.downloadDialog(requestUrl, url);
                                     }
                                 });
                             }
@@ -400,7 +400,7 @@ public class WebViewActivity extends AppCompatActivity {
                                     videoBean.setShereUrl(url);
                                     videoBean.setType("2");
                                     videoDao.insert(videoBean);
-                                    DownloadUtils.downloadDialog(mContext, requestUrl, url);
+                                    DownloadUtils.downloadDialog(requestUrl, url);
                                 }
                             });
                         }
