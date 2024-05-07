@@ -25,4 +25,6 @@ dependencies {
     // ARtouter
     implementation(rootProject.ext.dependencies.arouter_api)
     kapt(rootProject.ext.dependencies.arouter_compiler)
+    implementation(rootProject.ext.dependencies.FFmpegAndroid)
+    implementation(rootProject.ext.dependencies.jcodec_android)
 }

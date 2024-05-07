@@ -1,5 +1,6 @@
 package com.yingyang.works.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -25,6 +26,7 @@ class WorkAdapter(override val layoutId: Int = R.layout.item_work) :
         this.content = content
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(binding: ItemWorkBinding, item: VideoBean, position: Int) {
         binding.data = item
         Glide.with(content!!).setDefaultRequestOptions(
