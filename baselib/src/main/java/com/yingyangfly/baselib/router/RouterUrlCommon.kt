@@ -21,9 +21,9 @@ object RouterUrlCommon {
     const val works = "/works/page"
 
     /**
-     * 变声
+     * 文案
      */
-    const val changeVoice = "/changeVoice/page"
+    const val document = "/document/page"
 
     /**
      * 我的

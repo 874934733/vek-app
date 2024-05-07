@@ -6,11 +6,11 @@ android {
     defaultConfig {
         // 如果是独立模块，则使用当前组件的包名
         if (singleModule.toBoolean()) {
-            applicationId "com.yingyang.changevoice"
+            applicationId "com.yingyang.document"
         }
     }
     // 统一资源前缀，规范资源引用
-    resourcePrefix "changevoice_"
+    resourcePrefix "document_"
 }
 
 dependencies {

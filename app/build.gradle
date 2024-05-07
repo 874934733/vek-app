@@ -110,6 +110,7 @@ dependencies {
     implementation project(path: ':home')
     implementation project(path: ':main')
     implementation project(path: ':works')
+    implementation project(path: ':document')
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     implementation(rootProject.ext.androidx.kotlin_lib)
     implementation(rootProject.ext.androidx.kotlin_core)

@@ -94,7 +94,6 @@ ext {
             "FFmpegAndroid"            : "com.writingminds:FFmpegAndroid:0.3.2",
             "jcodec_android"           : "org.jcodec:jcodec-android:0.1.9",
             "chuckerteam_chucker"      : 'com.github.chuckerteam.chucker:library-no-op:3.5.2',
-            "MultiTypeFilePicker"      : "com.vincent.filepicker:MultiTypeFilePicker:1.0.4",
             "lifecycle"                : 'androidx.lifecycle:lifecycle-common-java8:2.3.1',
             "room_runtime"             : 'androidx.room:room-runtime:2.2.6',
             "room_compiler"            : 'androidx.room:room-compiler:2.2.6',
