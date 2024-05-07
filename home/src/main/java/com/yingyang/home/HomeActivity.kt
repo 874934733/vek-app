@@ -2,7 +2,6 @@ package com.yingyang.home
 
 import android.annotation.SuppressLint
 import android.provider.Settings
-import android.util.Log
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -70,7 +69,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>(), TabLayout.OnTabSelecte
         PermissionList.readPhoneStatePermission.check(this) {
             val androidId: String =
                 Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
-            Log.e("wpp", "androidId------------------------------>      " + androidId)
             User.saveAndroidId(androidId)
         }
     }
