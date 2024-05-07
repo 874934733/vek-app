@@ -18,14 +18,11 @@ interface VideoDao : BaseDao<VideoBean> {
     @Query("select * from Video where type = :type")
     fun getAllVideoBean(type: String): MutableList<VideoBean>
 
-    @Query("select * from Video where id = :id")
-    fun getVideoById(id: Int): VideoBean
-
     @Query("select * from Video where url = :url")
     fun getVideoByUrl(url: String): VideoBean
 
-    @Query("delete from Video where id = :id")
-    fun deleteById(id: Int)
+    @Query("delete from Video where shereUrl = :shereUrl")
+    fun deleteByShereUrl(shereUrl: String)
 
     @Query("delete from Video")
     fun deleteAll()

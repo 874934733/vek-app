@@ -42,7 +42,7 @@ class WorkListFragment : BaseFragment<FragmentWorkListBinding>() {
      */
     private fun delectWork(it: VideoBean) {
         if (videoDao != null) {
-            videoDao!!.deleteById(it.id)
+            videoDao!!.deleteByShereUrl(it.shereUrl)
             loadData()
         }
     }

@@ -2,16 +2,16 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "355e90a6dcdec244f9ca990e113d8790",
+    "identityHash": "8b7f3ba678f65f98baf65fa6ab4b2ea1",
     "entities": [
       {
         "tableName": "Video",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` TEXT, `url` TEXT, `shereUrl` TEXT, `name` TEXT, `type` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`shereUrl` TEXT NOT NULL, `date` TEXT, `url` TEXT, `name` TEXT, `type` TEXT, `placeHolderFieldOne` TEXT, `placeHolderFieldTwo` TEXT, `placeHolderFieldThree` TEXT, PRIMARY KEY(`shereUrl`))",
         "fields": [
           {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
+            "fieldPath": "shereUrl",
+            "columnName": "shereUrl",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -27,12 +27,6 @@
             "notNull": false
           },
           {
-            "fieldPath": "shereUrl",
-            "columnName": "shereUrl",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
             "fieldPath": "name",
             "columnName": "name",
             "affinity": "TEXT",
@@ -43,13 +37,31 @@
             "columnName": "type",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "placeHolderFieldOne",
+            "columnName": "placeHolderFieldOne",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "placeHolderFieldTwo",
+            "columnName": "placeHolderFieldTwo",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "placeHolderFieldThree",
+            "columnName": "placeHolderFieldThree",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "id"
+            "shereUrl"
           ],
-          "autoGenerate": true
+          "autoGenerate": false
         },
         "indices": [],
         "foreignKeys": []
@@ -58,7 +70,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '355e90a6dcdec244f9ca990e113d8790')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8b7f3ba678f65f98baf65fa6ab4b2ea1')"
     ]
   }
 }
