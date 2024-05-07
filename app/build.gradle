@@ -12,7 +12,7 @@ kapt {
 //多渠道打包
 apply plugin: 'walle'
 
-def appId = "com.yingyang.extractaudiovideo"
+def appId = "com.yingyang.vek"
 android {
     signingConfigs {
         debug {

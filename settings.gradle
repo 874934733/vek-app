@@ -1,4 +1,4 @@
-rootProject.name = "ExtractAudioVideo"
+rootProject.name = "vek"
 include ':app'
 include ':baselib'
 include ':home'
