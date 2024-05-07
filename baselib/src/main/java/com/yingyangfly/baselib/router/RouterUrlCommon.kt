@@ -44,4 +44,9 @@ object RouterUrlCommon {
      * 腾讯x5 webview
      */
     const val WEB_VIEW_TENCENT_WEBVIEW = "/tencent/webview"
+
+    /**
+     * 会员中心
+     */
+    const val memberCenter = "/member/center"
 }

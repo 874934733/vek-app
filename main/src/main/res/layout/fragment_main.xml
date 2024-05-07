@@ -54,6 +54,7 @@
                 android:textSize="@dimen/txt_16" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnRecharge"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/view_40"
                 android:layout_marginStart="@dimen/view_8"
