@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ResourceName">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/view_45"
+            android:layout_marginStart="@dimen/view_24"
+            android:layout_marginTop="@dimen/view_124"
+            android:layout_marginEnd="@dimen/view_24"
+            android:gravity="center_vertical"
+            android:hint="请输入手机号"
+            android:textColor="@color/base_text_65"
+            android:textSize="@dimen/txt_14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/view_24"
+            android:layout_marginTop="@dimen/view_12"
+            android:layout_marginEnd="@dimen/view_24"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:layout_width="0dp"
+                android:layout_height="@dimen/view_45"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:hint="请输入验证码"
+                android:textColor="@color/base_text_65"
+                android:textSize="@dimen/txt_14sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/view_36"
+                android:layout_marginStart="@dimen/view_12"
+                android:background="@drawable/bg_send_code_btn"
+                android:gravity="center"
+                android:paddingStart="@dimen/view_8"
+                android:paddingEnd="@dimen/view_8"
+                android:text="发送验证码"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/txt_12" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/view_45"
+            android:layout_marginStart="@dimen/view_24"
+            android:layout_marginTop="@dimen/view_24"
+            android:layout_marginEnd="@dimen/view_24"
+            android:background="@drawable/bg_send_code_btn"
+            android:gravity="center"
+            android:text="登录"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/txt_16" />
+    </LinearLayout>
+
+</layout>

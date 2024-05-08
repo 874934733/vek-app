@@ -34,7 +34,7 @@ android {
             minifyEnabled false
             buildConfigField "Boolean", "SINGLE_MODULE", "${singleModule}"
             buildConfigField "String", "BUGLY_APPID", "\"fa569117d6\""
-            buildConfigField "String", "API_URL", "\"https://www.yingyangfly.com/hcp-app-api-dev\""
+            buildConfigField "String", "API_URL", "\"http://192.168.0.119:6663\""
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
@@ -42,7 +42,7 @@ android {
             minifyEnabled false
             buildConfigField "Boolean", "SINGLE_MODULE", "${singleModule}"
             buildConfigField "String", "BUGLY_APPID", "\"fa569117d6\""
-            buildConfigField "String", "API_URL", "\"https://www.yingyangfly.com/hcp-app-api-uat\""
+            buildConfigField "String", "API_URL", "\"http://192.168.0.119:6663\""
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
