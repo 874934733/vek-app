@@ -37,12 +37,16 @@ import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.yingyangfly.baselib.R;
+import com.yingyangfly.baselib.bean.DownLoadVideoEvent;
 import com.yingyangfly.baselib.jsbridge.BridgeWebView;
 import com.yingyangfly.baselib.jsbridge.BridgeWebViewClient;
 import com.yingyangfly.baselib.room.AppDataBase;
 import com.yingyangfly.baselib.room.VideoBean;
 import com.yingyangfly.baselib.room.VideoDao;
 import com.yingyangfly.baselib.utils.DownloadUtils;
+import com.yingyangfly.baselib.utils.RxBusCodes;
+
+import gorden.rxbus2.RxBus;
 
 /**
  * h5入口
@@ -94,6 +98,7 @@ public class WebViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.webview_activity_main_h5);
+        RxBus.get().register(this);
         db = AppDataBase.getInstance(this.getApplicationContext());
         if (db != null) {
             videoDao = db.getVideoDao();
@@ -188,6 +193,7 @@ public class WebViewActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        RxBus.get().unRegister(this);
         webView.removeAllViews();
         webView.destroy();
         //异常所以的信息
@@ -384,10 +390,10 @@ public class WebViewActivity extends AppCompatActivity {
                                         videoBean.setDate(String.valueOf(System.currentTimeMillis()));
                                         videoBean.setUrl(requestUrl);
                                         videoBean.setShereUrl(url);
-                                        videoBean.setType("2");
+                                        videoBean.setType(type);
                                         videoDao.insert(videoBean);
                                         DownloadUtils.downloadDialog(requestUrl, url, path -> {
-                                            Log.e("wpp", "path----------------------->     "+path);
+                                            RxBus.get().send(RxBusCodes.loadVideoSuccess, new DownLoadVideoEvent(path, type, videoBean.getDate()));
                                         });
                                     }
                                 });
@@ -399,10 +405,10 @@ public class WebViewActivity extends AppCompatActivity {
                                     videoBean.setDate(String.valueOf(System.currentTimeMillis()));
                                     videoBean.setUrl(requestUrl);
                                     videoBean.setShereUrl(url);
-                                    videoBean.setType("2");
+                                    videoBean.setType(type);
                                     videoDao.insert(videoBean);
                                     DownloadUtils.downloadDialog(requestUrl, url, path -> {
-                                        Log.e("wpp", "path----------------------->     "+path);
+                                        RxBus.get().send(RxBusCodes.loadVideoSuccess, new DownLoadVideoEvent(path, type, videoBean.getDate()));
                                     });
                                 }
                             });

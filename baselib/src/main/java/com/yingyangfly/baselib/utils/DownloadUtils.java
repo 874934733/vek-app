@@ -61,11 +61,12 @@ public class DownloadUtils {
 
         String finalShortUrl = shortUrl;
         new Thread(() -> {
-            boolean re = DownloadUtils.downloadVideo(url, PathUtils.getExternalDownloadsPath(), finalShortUrl);
+            Log.e("wpp", "------------------------>    "+PathUtils.getExternalAppCachePath());
+            boolean re = DownloadUtils.downloadVideo(url, PathUtils.getExternalAppCachePath(), finalShortUrl);
             if (re) {
 //                ToastUtils.cancel();
 //                ToastUtils.showLong("下载成功,文件在Download目录下!");
-                String fileName = PathUtils.getExternalDownloadsPath() + "/" + EncryptUtils.encryptMD5ToString(finalShortUrl) + ".mp4";
+                String fileName = PathUtils.getExternalAppCachePath() + "/" + EncryptUtils.encryptMD5ToString(finalShortUrl) + ".mp4";
                 setOnDownLoadListener.success(fileName);
             }
         }).start();
@@ -184,7 +185,7 @@ public class DownloadUtils {
     }
 
     public static boolean isExists(String shortUrl) {
-        String saveToFolder = PathUtils.getExternalDownloadsPath();
+        String saveToFolder = PathUtils.getExternalAppCachePath();
 //        Log.i(TAG, "isExists:" + shortUrl);
         if (StringUtils.isEmpty(shortUrl)) {
             //下载链接为空
