@@ -9,6 +9,7 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="@dimen/view_45"
             android:layout_marginStart="@dimen/view_24"
@@ -29,6 +30,7 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/password"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/view_45"
                 android:layout_weight="1"
@@ -37,17 +39,14 @@
                 android:textColor="@color/base_text_65"
                 android:textSize="@dimen/txt_14sp" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCode"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/view_36"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/view_12"
-                android:background="@drawable/bg_send_code_btn"
-                android:gravity="center"
-                android:paddingStart="@dimen/view_8"
-                android:paddingEnd="@dimen/view_8"
                 android:text="发送验证码"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/txt_12" />
+                android:textColor="@color/color_006EE4"
+                android:textSize="@dimen/txt_14sp" />
 
         </LinearLayout>
 
